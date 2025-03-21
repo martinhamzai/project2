@@ -66,7 +66,7 @@ public class Database {
         KVPair<String, Point>  pair = list.remove(name);
         if (pair != null)
         {
-            qt.remove(pair.value());
+            //qt.remove(pair.value());
         }
         else
         {
@@ -107,7 +107,10 @@ public class Database {
      *      The height of the rectangle
      */
     public void regionsearch(int x, int y, int w, int h) {
-        qt.regionSearch(x, y, w, h);
+        System.out.println("Points intersecting region (" + x + ", " + y + ", " + w + ", " + h + "):");
+        int count = qt.regionSearch(x, y, w, h);
+        System.out.println(count + " quadtree nodes visited");
+        
     }
 
 
