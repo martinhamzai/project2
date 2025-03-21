@@ -71,6 +71,7 @@ public class Database {
 
     public void dump() {
         list.dump();
+        qt.dump();
     }
 
 }

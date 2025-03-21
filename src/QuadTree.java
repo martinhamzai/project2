@@ -14,4 +14,8 @@ public class QuadTree {
         root = root.insert(pair, 0, 0, SIZE - 1, SIZE - 1);
         return true;
     }
+    
+    public void dump() {
+        root.dump();
+    }
 }
