@@ -128,19 +128,4 @@ public class LeafNode implements QuadNode {
         return null;
     }
 
-
-    @Override
-    public int regionSearch(
-        int searchX,
-        int searchY,
-        int searchWidth,
-        int searchHeight,
-        int currX,
-        int currY,
-        int size)
-    {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }

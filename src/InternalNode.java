@@ -143,6 +143,7 @@ public class InternalNode implements QuadNode {
         } else {
             return se.search(p, midX + 1, midY + 1, width, height);
         }
+    }
 
     private boolean intersect(
         int x1,

@@ -90,15 +90,15 @@ public class CommandProcessorTest extends TestCase {
         
         systemOut().clearHistory();
         cmdProc.processor("remove 1 1");
-        assertEquals(systemOut().getHistory(), "Removed point: (p1, 1, 1)\n");
+        assertEquals(systemOut().getHistory(), "Point removed: (p1, 1, 1)\n");
         
         cmdProc.processor("dump");
         
         systemOut().clearHistory();
-        //cmdProc.processor("remove 43 2");
-        //assertEquals(systemOut().getHistory(), "Point not found: (43, 2)\n");
+        cmdProc.processor("remove 43 2");
+        assertEquals(systemOut().getHistory(), "Point not found: (43, 2)\n");
         
-        //cmdProc.processor("remove 3 3");
+        cmdProc.processor("remove 3 3");
         cmdProc.processor("dump");
 
     }
