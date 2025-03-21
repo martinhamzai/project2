@@ -71,21 +71,9 @@ public class LeafNode implements QuadNode {
 
 
     @Override
-<<<<<<< Updated upstream
-    public KVPair<String, Point> remove(
-        Point p,
-        int x,
-        int y,
-        int width,
-        int height) {
-        ArrayList<KVPair<String, Point>> values = this.getList(); // Access
-                                                                  // pairs via
-                                                                  // getter
-=======
     public QuadNode remove(QuadNode node, Point p, int x, int y, int width, int height)
     {
         ArrayList<KVPair<String, Point>> values = this.getList();
->>>>>>> Stashed changes
         for (int i = 0; i < values.size(); i++) {
             if (values.get(i).value().getX() == p.getX() && values.get(i).value().getY() == p.getY())  {
                 System.out.println("Removed point: " + values.remove(i).toString());
@@ -97,9 +85,6 @@ public class LeafNode implements QuadNode {
        return this;
     
     }
-<<<<<<< Updated upstream
-=======
-}
->>>>>>> Stashed changes
+
 
 }
