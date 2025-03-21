@@ -57,5 +57,15 @@ public class InternalNode implements QuadNode{
         
         return count;
     }
+
+
+    @Override
+    public
+        KVPair<String, Point>
+        remove(Point p, int x, int y, int wdith, int height)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }

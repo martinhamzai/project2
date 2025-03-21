@@ -44,6 +44,18 @@ public class LeafNode implements QuadNode {
     public ArrayList<KVPair<String, Point>> getList() {
         return pairs;
     }
+
+    @Override
+    public
+        KVPair<String, Point>
+        remove(Point p, int x, int y, int wdith, int height)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    
+    
     
 }
 

@@ -20,4 +20,10 @@ public class QuadTree {
         int count = root.dump(0, 0, 0, SIZE);
         System.out.println(count + " quadtree nodes printed");
     }
+    
+    
+    public KVPair<String, Point> remove(Point p) {
+        return root.remove(p, 0, 0, SIZE - 1, SIZE - 1);
+    }
+    
 }
