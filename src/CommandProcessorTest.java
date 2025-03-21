@@ -65,7 +65,6 @@ public class CommandProcessorTest extends TestCase {
      */
     public void testRemoveByName() {
         cmdProc.processor("insert p 1 1");
-
         cmdProc.processor("dump");
         assertEquals(systemOut().getHistory(), "Remove by name\n");
 
