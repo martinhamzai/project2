@@ -63,8 +63,15 @@ public class Database {
      *          The key of the KVPair to remove.
      */
     public void remove(String name) {
-        list.remove(name);
-        //qt.remove(pair.value());
+        KVPair<String, Point>  pair = list.remove(name);
+        if (pair != null)
+        {
+            qt.remove(pair.value());
+        }
+        else
+        {
+            System.out.println("Point not removed: " + name);
+        }
     }
 
 
@@ -75,7 +82,6 @@ public class Database {
      */
     public void remove(Point p) {
         qt.remove(p);
-        //list.remove(pair.key());
     }
 
 
