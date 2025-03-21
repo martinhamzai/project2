@@ -6,18 +6,13 @@
  *  @author 18046
  *  @version Mar 21, 2025
  */
-public class InternalNode<K extends Comparable<K>, E>  implements QuadNode{
+public class InternalNode implements QuadNode{
 
     public static EmptyNode flyweight = null;
     
     QuadNode nw, ne, sw, se;
-    int x, y, width, height;
     
-    public InternalNode(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public InternalNode() {
         this.nw = this.ne = this.sw = this.se = EmptyNode.getInstance();
     }
     
