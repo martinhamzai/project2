@@ -23,7 +23,7 @@ public class InternalNode<K extends Comparable<K>, E>  implements QuadNode{
     
     
     @Override
-    public boolean insert(KVPair<String, Point> pair, int xMin, int xMax, int yMin, int yMax)
+    public QuadNode insert(KVPair<String, Point> pair, int xMin, int xMax, int yMin, int yMax)
     {
         // TODO Auto-generated method stub
         return false;
