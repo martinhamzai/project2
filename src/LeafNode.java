@@ -1,9 +1,16 @@
 
-public class LeafNode<K, E> implements QuadNode<E> {
+public class LeafNode implements QuadNode {
 
-    private KVPair<K, E> pair;
+    private KVPair<String, Point> pair;
     
-    public LeafNode(Point p) {
-        this.p = p;
+    public LeafNode(KVPair<String, Point> pair) {
+        this.pair = pair;
+    }
+    
+    public QuadNode insert(KVPair<String, Point> insertPair, int x, int y, int width, int height) {
+        InternalNode internal = new InternalNode();
+        internal =  internal.insert(pair, x, y, width, height);
+        internal = internal.insert(insertPair, x, y, width, height);
+        return internal;
     }
 
