@@ -44,6 +44,9 @@ public class LeafNode implements QuadNode {
         }
         System.out.println("Node at " + x + ", " + y + ", " + size + ":");
         for (int i = 0; i < pairs.size(); i++) {
+            for (int j = 0; j < depth; j++) {
+                System.out.print("  ");
+            }
             System.out.println("  " + pairs.get(i).toString());
         }
         return 1;
