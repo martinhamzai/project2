@@ -62,7 +62,11 @@ public class CommandProcessorTest
 
         cmdProc.processor("insert p 2 4");
         assertEquals(systemOut().getHistory(), "Point inserted: (p, 2, 4)\n");
-
+        
+        systemOut().clearHistory();
+        cmdProc.processor("insert p5 3 600");
+        assertEquals(systemOut().getHistory(), "Point inserted: (p5, 3, 600)\n");
+        
     }
 
 
@@ -137,10 +141,9 @@ public class CommandProcessorTest
         cmdProc.processor("remove 5 5");
         assertEquals(systemOut().getHistory(), "Point removed: (p5, 5, 5)\n");
 
-        systemOut().clearHistory();
-        // cmdProc.processor("remove 3 600");
-        // assertEquals(systemOut().getHistory(), "Point removed: (p303, 3,
-        // 600)\n");
+        //systemOut().clearHistory();
+        //cmdProc.processor("remove 3 600");
+        //assertEquals(systemOut().getHistory(), "Point removed: (p303, 3, 600)\n");
 
         systemOut().clearHistory();
         cmdProc.processor("remove 900 900");
