@@ -1,4 +1,4 @@
-/**
+ /**
  * KVPair class declaration
  *
  * @param <K>
@@ -79,6 +79,6 @@ public class KVPair<K extends Comparable<K>, E>
      */
 
     public String toString() {
-        return theKey.toString() + ", " + theVal.toString();
+        return "(" + theKey.toString() + ", " + theVal.toString() + ")";
     }
 }

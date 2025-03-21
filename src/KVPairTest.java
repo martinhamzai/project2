@@ -54,7 +54,7 @@ public class KVPairTest extends TestCase {
      * representation is equal to the expected value.
      */
     public void testToString() {
-        String testStr = "key, 123";
+        String testStr = "(key, 123)";
         assertEquals(pair.toString(), testStr);
     }
 

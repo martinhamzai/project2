@@ -1,4 +1,4 @@
 
-public class LeafNode {
+public class LeafNode implements QuadNode {
 
 }

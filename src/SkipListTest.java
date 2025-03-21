@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -144,7 +143,7 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode with depth 1, value null\nNode with depth 1,"
-                + " value int1, 1\nSkipList size is" + ": 1\n", systemOut()
+                + " value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 
@@ -153,9 +152,9 @@ public class SkipListTest extends TestCase {
         sl.insert(kv2);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 2, value null\nNode with depth 1,"
-                + " value int1, 1\nNode with depth 2, value int2, 2\nSkipList "
-                + "size is" + ": 2\n", systemOut().getHistory());
+            "SkipList dump:\nNode with depth 2, value null\nNode with depth 1, "
+            + "value (int1, 1)\nNode with depth 2, value (int2, 2)\nSkipList si"
+            + "ze is" + ": 2\n", systemOut().getHistory());
         systemOut().clearHistory();
 
         // depth 2, ensure before kv1 and head level changes
@@ -164,8 +163,8 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode with depth 2, value null\nNode with depth 2, "
-                + "value int, 2\nNode with depth 1, value int1, 1\nNode with de"
-                + "pth 2, value int2, 2\nSkipList size is: 3\n", systemOut()
+            + "value (int, 2)\nNode with depth 1, value (int1, 1)\nNode with de"
+            + "pth 2, value (int2, 2)\nSkipList size is: 3\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 
@@ -176,9 +175,9 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode with depth 3, value null\nNode with depth 2, "
-                + "value int, 2\nNode with depth 3, value int1, 1\nNode with de"
-                + "pth 1, value int1, 1\nNode with depth 2, value int2, 2\nSkip"
-                + "List size is: 4\n", systemOut().getHistory());
+            + "value (int, 2)\nNode with depth 3, value (int1, 1)\nNode with de"
+            + "pth 1, value (int1, 1)\nNode with depth 2, value (int2, 2)\nSkip"
+            + "List size is: 4\n", systemOut().getHistory());
     }
 
 
@@ -276,8 +275,8 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode with depth 1, value null\nNode with depth 1,"
-                + " value int1, 1\nSkipList size is" + ": 1\n",
-            systemOut().getHistory());
+                + " value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
+                    .getHistory());
         systemOut().clearHistory();
 
     }

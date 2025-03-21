@@ -1,5 +1,3 @@
-import java.awt.Point;
-
 /**
  * The purpose of this class is to parse a text file into its appropriate, line
  * by line commands for the format specified in the project spec.
@@ -46,7 +44,7 @@ public class CommandProcessor {
         // parameters by converting the string integers into
         // their Integer equivalent, trimming the whitespace
         if (command.equals("insert")) {
-
+            
             // Get x, y from arr into separate Integers
             Integer x = Integer.parseInt(arr[2]);
             Integer y = Integer.parseInt(arr[3]);
@@ -69,7 +67,7 @@ public class CommandProcessor {
                 // Calls remove by name
                 data.remove(arr[1]);
             }
-            else if (numParam == 3) {
+            else if (numParam == 2) {
                 // Calls remove by coordinate, converting string
                 // integers into their Integer equivalent minus whitespace
                 // Get x, y from arr into separate Integers

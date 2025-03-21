@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import student.TestableRandom;
@@ -66,7 +65,7 @@ public class SkipList<K extends Comparable<K>, E>
         x = x.forward[0];
         // insert all matching keys into the ArrayList
         while ((x != null) && x.element().key().compareTo(key) == 0) {
-            pairs.add(x.element());
+            pairs.insert(x.element());
             x = x.forward[0];
         }
         return pairs;
