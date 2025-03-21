@@ -131,6 +131,7 @@ public class Database {
      * Searches for a point by name inside the SkipList.
      * 
      * @param name
+     *            The name of the point to find in the skiplist
      */
     public void search(String name) {
         ArrayList<KVPair<String, Point>> pairs = list.search(name);

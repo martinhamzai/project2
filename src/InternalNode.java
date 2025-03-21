@@ -8,13 +8,19 @@
  */
 public class InternalNode implements QuadNode {
 
-    private QuadNode nw, ne, sw, se;
+    private QuadNode nw;
+    private QuadNode ne;
+    private QuadNode sw;
+    private QuadNode se;
 
     /**
      * Initialize a new InternalNode object
      */
     public InternalNode() {
-        this.nw = this.ne = this.sw = this.se = EmptyNode.getInstance();
+        this.nw = EmptyNode.getInstance();
+        this.ne = EmptyNode.getInstance();
+        this.sw = EmptyNode.getInstance();
+        this.se = EmptyNode.getInstance();
     }
 
 
