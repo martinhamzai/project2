@@ -103,5 +103,20 @@ public class InternalNode
 
         return this;
     }
+    
+    public int regionSearch(
+        int searchX,
+        int searchY,
+        int searchWidth,
+        int searchHeight,
+        int currX,
+        int currY,
+        int size) {
+        
+        int count = 1;
+        int half = size / 2; 
+        
+        return count;
+    }
 
 }

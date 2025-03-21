@@ -92,7 +92,7 @@ public class Database {
      *      The height of the rectangle
      */
     public void regionsearch(int x, int y, int w, int h) {
-        System.out.println("Regionsearch");
+        qt.regionSearch(x, y, w, h);
     }
 
 
