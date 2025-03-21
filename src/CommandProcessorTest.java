@@ -110,7 +110,7 @@ public class CommandProcessorTest extends TestCase {
     public void testRegionSearch() {
         
 
-        // regionsearch 5    5   4   -2
+        
         
         cmdProc.processor("insert p_p -1 -20");
         cmdProc.processor("insert poi 7 -8");

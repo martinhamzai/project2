@@ -107,6 +107,11 @@ public class Database {
      *      The height of the rectangle
      */
     public void regionsearch(int x, int y, int w, int h) {
+        if (w <= 0 || h <= 0) {
+            System.out.println("Rectangle rejected: (" + x + ", " + y + ", " + w + ", " + h + ")");
+            return;
+        }
+        
         System.out.println("Points intersecting region (" + x + ", " + y + ", " + w + ", " + h + "):");
         int count = qt.regionSearch(x, y, w, h);
         System.out.println(count + " quadtree nodes visited");
