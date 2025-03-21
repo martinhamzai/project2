@@ -90,12 +90,15 @@ public class ArrayList<E> {
      *              If index is invalid
      */
     public E remove(int pos) throws IndexOutOfBoundsException {
-        if (pos >= size) {
+        if (pos >= size || pos < 0) {
             throw new IndexOutOfBoundsException("Index" + pos
                 + "is out of bounds");
         }
         E it = listArray[pos];
-        listArray[pos] = null;
+        for (int i = pos; i < size - 1; i++) {
+            listArray[i] = listArray[i + 1]; 
+        }
+        listArray[size - 1] = null;
         size--;
         return it;
     }

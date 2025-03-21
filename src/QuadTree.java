@@ -22,8 +22,9 @@ public class QuadTree {
     }
     
     
-    public KVPair<String, Point> remove(Point p) {
-        return root.remove(p, 0, 0, SIZE - 1, SIZE - 1);
+    public QuadNode remove(Point p) {
+        root = root.remove(root, p, 0, 0, SIZE - 1, SIZE - 1);
+        return root;
     }
     
 }

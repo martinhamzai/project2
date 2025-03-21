@@ -63,9 +63,8 @@ public class Database {
      *          The key of the KVPair to remove.
      */
     public void remove(String name) {
-        System.out.println("Remove by name");
-        KVPair<String, Point> pair = list.remove(name);
-        qt.remove(pair.value());
+        list.remove(name);
+        //qt.remove(pair.value());
     }
 
 
@@ -75,9 +74,8 @@ public class Database {
      *      The value of the KVPair to remove.
      */
     public void remove(Point p) {
-        System.out.println("Remove by coords");
-        KVPair<String, Point> pair = qt.remove(p);
-        list.remove(pair.key());
+        qt.remove(p);
+        //list.remove(pair.key());
     }
 
 

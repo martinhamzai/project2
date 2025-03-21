@@ -37,12 +37,11 @@ public class EmptyNode implements QuadNode {
 
 
     @Override
-    public KVPair<String, Point> remove(
-        Point p,
-        int x,
-        int y,
-        int width,
-        int height) {
+    public
+        QuadNode
+        remove(QuadNode node, Point p, int x, int y, int width, int height)
+    {
+        // TODO Auto-generated method stub
         return null;
     }
 
