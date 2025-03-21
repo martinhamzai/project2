@@ -65,8 +65,13 @@ public class CommandProcessorTest extends TestCase {
      */
     public void testRemoveByName() {
         cmdProc.processor("insert p 1 1");
+<<<<<<< Updated upstream
         //cmdProc.processor("remove p");
         //assertEquals(systemOut().getHistory(), "Remove by name\n");
+=======
+        cmdProc.processor("dump");
+        assertEquals(systemOut().getHistory(), "Remove by name\n");
+>>>>>>> Stashed changes
     }
 
 
@@ -75,8 +80,22 @@ public class CommandProcessorTest extends TestCase {
      */
     public void testRemoveByCoords() {
         cmdProc.processor("insert p 1 1");
+<<<<<<< Updated upstream
         // cmdProc.processor("remove 1 1");
         //assertEquals(systemOut().getHistory(), "Remove by coords\n");
+=======
+        cmdProc.processor("insert p 2 2");
+        cmdProc.processor("insert p 3 3");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("remove 1 1");
+        assertEquals(systemOut().getHistory(), "Removed point: (p, 1, 1)\n");
+        
+        cmdProc.processor("remove 2 2");
+        
+        cmdProc.processor("remove 3 3");
+        cmdProc.processor("dump");
+>>>>>>> Stashed changes
     }
 
 
