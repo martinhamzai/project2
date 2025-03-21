@@ -16,6 +16,8 @@ public class QuadTree {
     }
     
     public void dump() {
-        root.dump();
+        System.out.println("QuadTree dump:");
+        int count = root.dump(0, 0, 0, SIZE);
+        System.out.println(count + " quadtree nodes printed");
     }
 }

@@ -19,5 +19,14 @@ public class EmptyNode implements QuadNode {
     public QuadNode insert(KVPair<String, Point> pair, int x, int y, int width, int height) {
         return new LeafNode(pair);
     }
+    
+    public int dump(int depth, int x, int y, int size) {
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
+        }
+        System.out.println("Node at " + x + ", " + y + ", " + size + ": Empty");
+        return 1;
+        
+    }
 
 }

@@ -25,5 +25,20 @@ public class LeafNode implements QuadNode {
         return internal;
     }
     
+    public int dump(int depth, int x, int y, int size) {
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
+        }
+        System.out.println("Node at " + x + ", " + y + ", " + size + ":");
+        for (int i = 0; i < pairs.size(); i++) {
+            System.out.println("  " + pairs.get(i).toString());
+        }
+        return 1;
+    }
+    
+    public ArrayList<KVPair<String, Point>> getList() {
+        return pairs;
+    }
+    
 }
 

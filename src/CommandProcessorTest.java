@@ -121,6 +121,10 @@ public class CommandProcessorTest extends TestCase {
      * Tests the dump branch of the processor() method.
      */
     public void testDump() {
+        cmdProc.processor("insert p 1 20");
+        cmdProc.processor("insert p 10 30");
+        cmdProc.processor("insert p 1 20");
+        cmdProc.processor("insert far 200 200");
         cmdProc.processor("dump");
         assertEquals(systemOut().getHistory(), "SkipList dump:\n"
             + "Node with depth 1, value null\n" + "SkipList size is: 0\n");

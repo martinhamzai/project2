@@ -41,4 +41,21 @@ public class InternalNode implements QuadNode{
         return this;
     }
     
+    public int dump(int depth, int x, int y, int size) {
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
+        }
+        System.out.println("Node at " + x + ", " + y + ", " + size + ": Internal");
+        
+        int mid = size / 2;
+        int count = 1;
+        
+        count += nw.dump(depth + 1, x, y, mid);
+        count += ne.dump(depth + 1, x + mid, y, mid);
+        count += sw.dump(depth + 1, x, y + mid, mid);
+        count += se.dump(depth + 1, x + mid, y + mid, mid);
+        
+        return count;
+    }
+    
 }
