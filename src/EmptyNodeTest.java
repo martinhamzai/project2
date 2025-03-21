@@ -39,7 +39,7 @@ public class EmptyNodeTest extends TestCase {
      * Tests the remove method.
      */
     public void testRemove() {
-        assertTrue(en.remove(en, null, 0, 0, 0, 0) == null);
+        assertTrue(en.remove(null, 0, 0, 0, 0) == null);
     }
 
 }

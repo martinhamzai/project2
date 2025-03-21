@@ -73,10 +73,10 @@ public class LeafNode implements QuadNode {
     @Override
     public QuadNode remove(Point p, int x, int y, int width, int height) {
         for (int i = 0; i < pairs.size(); i++) {
-            Point current = pairs.get(i).getValue();
+            Point current = pairs.get(i).value();
             if (current.getX() == p.getX() && current.getY() == p.getY()) {
                 KVPair<String, Point> removed = pairs.remove(i);
-                System.out.println("Point removed: (" + removed.getKey() + ", " + p.getX() + ", " + p.getY() + ")");
+                System.out.println("Point removed: (" + removed.key() + ", " + p.getX() + ", " + p.getY() + ")");
                 if (pairs.size() == 0) {
                     return EmptyNode.getInstance();
                 }
@@ -85,6 +85,32 @@ public class LeafNode implements QuadNode {
         }
         System.out.println("Point not found: (" + p.getX() + ", " + p.getY() + ")");
         return this;
+    }
+    
+    public int regionSearch(
+        int searchX,
+        int searchY,
+        int searchWidth,
+        int searchHeight,
+        int currX,
+        int currY,
+        int size) {
+
+        int count = 1; // visited this node
+
+        for (int i = 0; i < pairs.size(); i++) {
+            Point p = pairs.get(i).value();
+            int px = p.getX();
+            int py = p.getY();
+
+            // Check if point is inside the search rectangle
+            if (px >= searchX && px < searchX + searchWidth &&
+                py >= searchY && py < searchY + searchHeight) {
+                System.out.println(pairs.get(i).toString());
+            }
+        }
+
+        return count;
     }
 
 }

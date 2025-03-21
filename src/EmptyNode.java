@@ -58,14 +58,23 @@ public class EmptyNode implements QuadNode {
     /**
      * Redundant method inherited from the QuadNode interface.
      */
-    public QuadNode remove(
-        QuadNode node,
-        Point p,
-        int x,
-        int y,
-        int width,
-        int height) {
+    
+    public QuadNode remove(Point p, int x, int y, int width, int height) {
         return null;
     }
+    
+    
+    public int regionSearch(
+        int searchX,
+        int searchY,
+        int searchWidth,
+        int searchHeight,
+        int currX,
+        int currY,
+        int size) {
+
+        return 1;
+    }
+
 
 }
