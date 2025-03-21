@@ -27,19 +27,23 @@ public class InternalNode<K extends Comparable<K>, E>  implements QuadNode{
     {   
         Point p = pair.value();
         int midX = (x + width) / 2;
-        int midY = (x + height) / 2;
+        int midY = (y + height) / 2;
         
         if (p.getX() <= midX && p.getY() <= midY){
-            nw = nw.insert(pair, x, y, width, height);
+            nw = nw.insert(pair, x, y, width/2, height/2);
         }
-        else if (p.getX() > midX && p.getY() <= midY);{
-            sw = sw.insert(pair, x, y, width, height);
+        else if (p.getX() > midX && p.getY() <= midY){
+            ne = ne.insert(pair, midX + 1, y, width/2, height/2);
         }
-        else 
+        else if (p.getX() <= midX && p.getY() > midY) {
+            sw = sw.insert(pair, x, midY + 1, width / 2, height / 2);
+        }
+        else
+        {
+            se = se.insert(pair, midX + 1, midY + 1, width / 2, height / 2);
+        }
         
-        
-            
-        return NULL;
+        return this;
     }
     
 }
