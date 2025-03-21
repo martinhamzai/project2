@@ -5,4 +5,6 @@ public interface QuadNode {
 
     public int dump(int depth, int x, int y, int size);
     
+    public KVPair<String, Point> remove(Point p, int x, int y, int wdith, int height);
+    
 }

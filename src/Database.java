@@ -38,11 +38,15 @@ public class Database {
 
     public void remove(String name) {
         System.out.println("Remove by name");
+        KVPair<String, Point> pair = list.remove(name);
+        qt.remove(pair.value());
     }
 
 
     public void remove(Point p) {
         System.out.println("Remove by coords");
+        KVPair<String, Point> pair = qt.remove(p);
+        list.remove(pair.key());
     }
 
 
