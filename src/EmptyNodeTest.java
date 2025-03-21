@@ -19,6 +19,17 @@ public class EmptyNodeTest extends TestCase {
         en = EmptyNode.getInstance();
     }
     
+    
+    /**
+     * Tests the getInstance method.
+     */
+    public void testGetInstance() {
+        EmptyNode first = EmptyNode.getInstance();
+        EmptyNode second = EmptyNode.getInstance();
+        assertNotNull(first);
+        assertNotNull(second);
+        assertSame(first, second); // ensures the singleton is reused
+    }
     /**
      * Tests the insert method.
      */
@@ -46,7 +57,9 @@ public class EmptyNodeTest extends TestCase {
      * Tests the regionsearch method
      */
     public void testRegionSearch() {
-        assertTrue(en.regionSearch(0, 0, 0, 0, 0, 0, 0) == 1);
+        EmptyNode en = EmptyNode.getInstance();
+        int result = en.regionSearch(0, 0, 0, 0, 0, 0, 0);
+        assertEquals(1, result);
     }
     
     /**

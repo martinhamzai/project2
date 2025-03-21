@@ -226,5 +226,12 @@ public class LeafNode implements QuadNode {
         }
         return null;
     }
+    
+    /**
+     * @return the list of pairs in the LeafNode.
+     */
+    public ArrayList<KVPair<String, Point>> getPairs() {
+        return pairs;
+    }
 
 }
