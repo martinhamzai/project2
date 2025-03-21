@@ -60,12 +60,24 @@ public class InternalNode implements QuadNode{
 
 
     @Override
-    public
-        KVPair<String, Point>
-        remove(Point p, int x, int y, int wdith, int height)
+    public KVPair<String, Point> remove(Point p, int x, int y, int width, int height)
     {
-        // TODO Auto-generated method stub
-        return null;
+        int midX = (x + width) / 2;
+        int midY = (y + height) / 2;
+        
+        if (p.getX() <= midX && p.getY() <= midY){
+            return nw.remove(p, x, y, width/2, height/2);
+        }
+        else if (p.getX() > midX && p.getY() <= midY){
+            return ne.remove(p, midX + 1, y, width/2, height/2);
+        }
+        else if (p.getX() <= midX && p.getY() > midY) {
+            return sw.remove(p, x, midY + 1, width / 2, height / 2);
+        }
+        else
+        {
+            return se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
+        }
     }
     
 }
