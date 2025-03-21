@@ -17,6 +17,11 @@ public class LeafNode implements QuadNode {
             return this;
         }
         
+        if (width <= 1 && height <= 1) {
+            pairs.insert(insertPair);
+            return this;
+        }
+        
         InternalNode internal = new InternalNode();
         for (int i = 0; i < pairs.size(); i++) {
             internal.insert(pairs.get(i), x, y, width, height);
