@@ -125,7 +125,24 @@ public class InternalNode implements QuadNode {
 
         return count;
     }
+    
+    @Override
+    public
+        KVPair<String, Point>
+        search(Point p, int x, int y, int width, int height)
+    {
+        int midX = (x + width) / 2;
+        int midY = (y + height) / 2;
 
+        if (p.getX() <= midX && p.getY() <= midY) {
+            return nw.search(p, x, y, midX, midY);
+        } else if (p.getX() > midX && p.getY() <= midY) {
+            return ne.search(p, midX + 1, y, width, midY);
+        } else if (p.getX() <= midX && p.getY() > midY) {
+            return sw.search(p, x, midY + 1, midX, height);
+        } else {
+            return se.search(p, midX + 1, midY + 1, width, height);
+        }
 
     private boolean intersect(
         int x1,

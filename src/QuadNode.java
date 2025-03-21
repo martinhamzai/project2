@@ -23,4 +23,7 @@ public interface QuadNode {
         int currX,
         int currY,
         int size);
+    
+    public KVPair<String, Point> search(Point p, int x, int y, int width, int height);
 }
+

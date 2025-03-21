@@ -113,4 +113,34 @@ public class LeafNode implements QuadNode {
         return count;
     }
 
+
+    @Override
+    public
+        KVPair<String, Point>
+        search(Point p, int x, int y, int width, int height)
+    {
+        for (int i = 0; i < pairs.size(); i++) {
+            if (pairs.get(i).value().getX() == p.getX()
+                && pairs.get(i).value().getY() == p.getY()) {
+                return pairs.get(i); 
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public int regionSearch(
+        int searchX,
+        int searchY,
+        int searchWidth,
+        int searchHeight,
+        int currX,
+        int currY,
+        int size)
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

@@ -77,4 +77,36 @@ public class EmptyNode implements QuadNode {
     }
 
 
+    @Override
+    public
+        KVPair<String, Point>
+        search(Point p, int x, int y, int width, int height)
+    {
+        return null;
+    }
+
+
+    @Override
+    public QuadNode remove(Point p, int x, int y, int width, int height)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public int regionSearch(
+        int searchX,
+        int searchY,
+        int searchWidth,
+        int searchHeight,
+        int currX,
+        int currY,
+        int size)
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+
 }
