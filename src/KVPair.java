@@ -8,7 +8,7 @@
  * @author CS Staff
  * @version 2025spring
  */
-public class KVPair<K extends Comparable<K>, E> 
+public class KVPair<K extends Comparable<? super K>, E> 
     implements Comparable<KVPair<K, E>> {
     
     private K theKey; // The key

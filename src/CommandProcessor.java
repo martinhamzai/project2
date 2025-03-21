@@ -54,7 +54,7 @@ public class CommandProcessor {
 
             // call insert to store the KVPair in the database
             // arr[1] is the key
-            data.insert(new KVPair<>(arr[1], p));
+            data.insert(new KVPair<String, Point>(arr[1], p));
 
         }
 

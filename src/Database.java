@@ -5,6 +5,8 @@ public class Database {
     private SkipList<String, Point> list;
     
     private QuadTree qt;
+    
+    private final int SIZE = 1024;
 
     public Database() {
         list = new SkipList<String, Point>();
@@ -22,13 +24,14 @@ public class Database {
             return;
         }
 
-        if (p.getX() < 0 || p.getX() > 1023 || p.getY() < 0 || p
-            .getY() > 1023) {
+        if (p.getX() < 0 || p.getX() >= SIZE || p.getY() < 0 || p
+            .getY() >= SIZE) {
             System.out.println("Point rejected: " + pair.toString());
             return;
         }
         
         list.insert(pair);
+        qt.insert(pair);
         System.out.println("Point inserted: " + pair.toString());
     }
 
