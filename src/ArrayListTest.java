@@ -5,7 +5,7 @@ import student.TestCase;
  * and that the expected behavior occurs.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-2-22
+ * @version 2025-3-22
  */
 public class ArrayListTest
     extends TestCase
@@ -81,6 +81,27 @@ public class ArrayListTest
         }
         assertTrue(exception);
 
+    }
+    
+    /**
+     * Tests the remove() method.
+     */
+    public void testRemove() {
+        boolean exception = false;
+        try
+        {
+            list.remove(4);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            exception = true;
+        }
+        assertTrue(exception);
+        
+        list.insert(1);
+        assertTrue(list.size() == 1);
+        assertTrue(list.remove(0) == 1);
+        assertTrue(list.size() == 0);
     }
 
 }

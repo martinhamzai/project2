@@ -142,8 +142,8 @@ public class SkipListTest extends TestCase {
         sl.insert(kv1);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 1, value null\nNode with depth 1,"
-                + " value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
+            "SkipList dump:\nNode has depth 1, Value (null)\nNode has depth 1,"
+                + " Value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 
@@ -152,8 +152,8 @@ public class SkipListTest extends TestCase {
         sl.insert(kv2);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 2, value null\nNode with depth 1, "
-            + "value (int1, 1)\nNode with depth 2, value (int2, 2)\nSkipList si"
+            "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 1, "
+            + "Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkipList si"
             + "ze is" + ": 2\n", systemOut().getHistory());
         systemOut().clearHistory();
 
@@ -162,9 +162,9 @@ public class SkipListTest extends TestCase {
         sl.insert(kv3);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 2, value null\nNode with depth 2, "
-            + "value (int, 2)\nNode with depth 1, value (int1, 1)\nNode with de"
-            + "pth 2, value (int2, 2)\nSkipList size is: 3\n", systemOut()
+            "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 2, "
+            + "Value (int, 2)\nNode has depth 1, Value (int1, 1)\nNode has de"
+            + "pth 2, Value (int2, 2)\nSkipList size is: 3\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 
@@ -174,9 +174,9 @@ public class SkipListTest extends TestCase {
         sl.insert(kv1);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 3, value null\nNode with depth 2, "
-            + "value (int, 2)\nNode with depth 3, value (int1, 1)\nNode with de"
-            + "pth 1, value (int1, 1)\nNode with depth 2, value (int2, 2)\nSkip"
+            "SkipList dump:\nNode has depth 3, Value (null)\nNode has depth 2, "
+            + "Value (int, 2)\nNode has depth 3, Value (int1, 1)\nNode has de"
+            + "pth 1, Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkip"
             + "List size is: 4\n", systemOut().getHistory());
     }
 
@@ -186,13 +186,13 @@ public class SkipListTest extends TestCase {
      */
     public void testAdjustHead() {
         sl.dump();
-        assertEquals("SkipList dump:\nNode with depth 1, value null\nSkipList s"
+        assertEquals("SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
             + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
 
         sl.adjustHead(2);
         sl.dump();
-        assertEquals("SkipList dump:\nNode with depth 2, value null\nSkipList s"
+        assertEquals("SkipList dump:\nNode has depth 2, Value (null)\nSkipList s"
             + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
     }
@@ -265,17 +265,17 @@ public class SkipListTest extends TestCase {
 
         // no nodes
         sl.dump();
-        assertEquals("SkipList dump:\nNode with depth 1, value null\nSkipList s"
+        assertEquals("SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
             + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
 
-        // with nodes
+        // has nodes
         TestableRandom.setNextBooleans(false);
         sl.insert(kv1);
         sl.dump();
         assertEquals(
-            "SkipList dump:\nNode with depth 1, value null\nNode with depth 1,"
-                + " value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
+            "SkipList dump:\nNode has depth 1, Value (null)\nNode has depth 1,"
+                + " Value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 

@@ -208,11 +208,11 @@ public class SkipList<K extends Comparable<K>, E>
     public void dump() {
         SkipListIterator iter = new SkipListIterator();
         System.out.println("SkipList dump:");
-        System.out.println("Node with depth " + iter.getLevel()
-            + ", value null");
+        System.out.println("Node has depth " + iter.getLevel()
+            + ", Value (null)");
         while (iter.hasNext()) {
             KVPair<K, E> curr = iter.next();
-            System.out.print("Node with depth " + iter.getLevel() + ", value ");
+            System.out.print("Node has depth " + iter.getLevel() + ", Value ");
             System.out.println(curr.toString());
         }
         System.out.println("SkipList size is: " + size);

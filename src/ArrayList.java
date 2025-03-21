@@ -3,7 +3,7 @@
  * for search command functionality.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-02-22
+ * @version 2025-03-22
  * @param <E>
  *            Item
  */
@@ -81,6 +81,14 @@ public class ArrayList<E> {
     }
 
 
+    /**
+     * Removes an item from the list at the specified position.
+     * @param pos
+     *          The index to remove the item from
+     * @return The item at the specified position
+     * @throws IndexOutOfBoundsException
+     *              If index is invalid
+     */
     public E remove(int pos) throws IndexOutOfBoundsException {
         if (pos >= size) {
             throw new IndexOutOfBoundsException("Index" + pos
