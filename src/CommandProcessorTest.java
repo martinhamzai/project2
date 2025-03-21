@@ -52,6 +52,14 @@ public class CommandProcessorTest extends TestCase {
 
         cmdProc.processor("insert p 1 1");
         assertEquals(systemOut().getHistory(), "Point inserted: (p, 1, 1)\n");
+        
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p 1 1");
     }
 
 
