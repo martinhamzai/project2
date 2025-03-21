@@ -32,6 +32,7 @@ public class EmptyNode implements QuadNode {
      * Creates a new LeafNode if the QuadTree lands on the EmptyNode for
      * insertion.
      */
+    @Override
     public QuadNode insert(
         KVPair<String, Point> pair,
         int x,
@@ -45,6 +46,7 @@ public class EmptyNode implements QuadNode {
     /**
      * Prints out the information regarding the EmptyNode.
      */
+    @Override
     public int dump(int depth, int x, int y, int size) {
         for (int i = 0; i < depth; i++) {
             System.out.print("  ");
@@ -57,13 +59,35 @@ public class EmptyNode implements QuadNode {
 
     /**
      * Redundant method inherited from the QuadNode interface.
+     * 
+     * @param p
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * 
+     * @return null
      */
-    
+    @Override
     public QuadNode remove(Point p, int x, int y, int width, int height) {
         return null;
     }
-    
-    
+
+
+    /**
+     * Returns 1 to indicate regionSearch hit the empty node.
+     * 
+     * @param searchX
+     * @param searchY
+     * @param searchWidth
+     * @param searchHeight
+     * @param currX
+     * @param currY
+     * @param size
+     * 
+     * @return 1
+     */
+    @Override
     public int regionSearch(
         int searchX,
         int searchY,
@@ -77,16 +101,25 @@ public class EmptyNode implements QuadNode {
     }
 
 
+    /**
+     * Redundant method inherited from the QuadNode interface.
+     * 
+     * @param p
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * 
+     * @return null
+     */
     @Override
-    public
-        KVPair<String, Point>
-        search(Point p, int x, int y, int width, int height)
-    {
+    public KVPair<String, Point> search(
+        Point p,
+        int x,
+        int y,
+        int width,
+        int height) {
         return null;
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4de0c356c8a6e0a8bc588cf8363e341d6b7c0558
 }

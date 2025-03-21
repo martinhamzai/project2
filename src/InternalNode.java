@@ -1,21 +1,40 @@
 /**
- * Write a one-sentence summary of your class here. Follow it with additional
- * details about its purpose, what abstraction it represents, and how to use it.
+ * InternalNode class that implements the QuadNode interface. The QuadTree uses
+ * this type of Node when a LeafNode contains more than 3 Points that are
+ * different to subdivide the QuadTree into a smaller area.
  * 
- * @author 18046
- * @version Mar 21, 2025
+ * @author Martin Hamzai and Richmond Southall
+ * @version 2025-03-22
  */
 public class InternalNode implements QuadNode {
 
-    public static EmptyNode flyweight = null;
+    private QuadNode nw, ne, sw, se;
 
-    QuadNode nw, ne, sw, se;
-
+    /**
+     * Initialize a new InternalNode object
+     */
     public InternalNode() {
         this.nw = this.ne = this.sw = this.se = EmptyNode.getInstance();
     }
 
 
+    /**
+     * Insert a Point into a specific part of the InternalNode depending
+     * on its coordinates
+     * 
+     * @param pair
+     *            Pair to insert
+     * @param x
+     *            x coordinate to pass to LeafNode
+     * @param y
+     *            y coordinate to pass to LeafNode
+     * @param width
+     *            width to pass to LeafNode
+     * @param height
+     *            height to pass to LeafNode
+     * 
+     * @return this InternalNode
+     */
     @Override
     public QuadNode insert(
         KVPair<String, Point> pair,
@@ -23,10 +42,12 @@ public class InternalNode implements QuadNode {
         int y,
         int width,
         int height) {
+
         Point p = pair.value();
         int midX = (x + width) / 2;
         int midY = (y + height) / 2;
 
+        // insert point to nw, new, sw, or se depending on area.
         if (p.getX() <= midX && p.getY() <= midY) {
             nw = nw.insert(pair, x, y, width / 2, height / 2);
         }
@@ -44,7 +65,23 @@ public class InternalNode implements QuadNode {
     }
 
 
+    /**
+     * Looks at all nodes in the InternalNode and calls dump to print out
+     * the information about the node.
+     * 
+     * @param depth
+     *            the current depth
+     * @param x
+     *            the current x value
+     * @param y
+     *            the current y value
+     * @param size
+     *            the current width and height
+     * 
+     * @return the number of nodes
+     */
     public int dump(int depth, int x, int y, int size) {
+        // print spaces based on depth
         for (int i = 0; i < depth; i++) {
             System.out.print("  ");
         }
@@ -54,6 +91,7 @@ public class InternalNode implements QuadNode {
         int mid = size / 2;
         int count = 1;
 
+        // count up each quadrant
         count += nw.dump(depth + 1, x, y, mid);
         count += ne.dump(depth + 1, x + mid, y, mid);
         count += sw.dump(depth + 1, x, y + mid, mid);
@@ -63,16 +101,29 @@ public class InternalNode implements QuadNode {
     }
 
 
+    /**
+     * Locates a Point to remove in the InternalNode by examining if it
+     * fits the criteria.
+     * 
+     * @param p
+     *            The point to remove
+     * @param x
+     *            The current x
+     * @param y
+     *            the current y
+     * @param width
+     *            the current width
+     * @param height
+     *            the current height
+     * 
+     * @return this Internal Node
+     */
     @Override
-    public QuadNode remove(
-        Point p,
-        int x,
-        int y,
-        int width,
-        int height) {
+    public QuadNode remove(Point p, int x, int y, int width, int height) {
         int midX = (x + width) / 2;
         int midY = (y + height) / 2;
 
+        // check which quadrant to further search in
         if (p.getX() <= midX && p.getY() <= midY) {
             nw = nw.remove(p, x, y, width / 2, height / 2);
         }
@@ -86,6 +137,7 @@ public class InternalNode implements QuadNode {
             se = se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
         }
 
+        // if all 4 quadrants are empty nodes
         if (nw instanceof EmptyNode && ne instanceof EmptyNode
             && sw instanceof EmptyNode && se instanceof EmptyNode) {
             return EmptyNode.getInstance();
@@ -95,6 +147,27 @@ public class InternalNode implements QuadNode {
     }
 
 
+    /**
+     * checks the quadrants of the InternalNode if they fit in the boundaries
+     * of the regionsearch.
+     * 
+     * @param searchX
+     *            regionsearch boundary
+     * @param searchY
+     *            regionsearch boundary
+     * @param searchWidth
+     *            regionsearch boundary
+     * @param searchHeight
+     *            regionsearch bounday
+     * @param currX
+     *            the current x
+     * @param currY
+     *            the current y
+     * @param size
+     *            the current width and height
+     * 
+     * @return the number of nodes visited.
+     */
     public int regionSearch(
         int searchX,
         int searchY,
@@ -104,46 +177,78 @@ public class InternalNode implements QuadNode {
         int currY,
         int size) {
 
-        int count = 1; 
+        int count = 1;
         int half = size / 2;
 
-        if (intersect(searchX, searchY, searchWidth, searchHeight, currX, currY, half, half)) {
-            count += nw.regionSearch(searchX, searchY, searchWidth, searchHeight, currX, currY, half);
+        // check each quadrant
+        if (intersect(searchX, searchY, searchWidth, searchHeight, currX, currY,
+            half, half)) {
+            count += nw.regionSearch(searchX, searchY, searchWidth,
+                searchHeight, currX, currY, half);
         }
 
-        if (intersect(searchX, searchY, searchWidth, searchHeight, currX + half, currY, size - half, half)) {
-            count += ne.regionSearch(searchX, searchY, searchWidth, searchHeight, currX + half, currY, size - half);
+        if (intersect(searchX, searchY, searchWidth, searchHeight, currX + half,
+            currY, size - half, half)) {
+            count += ne.regionSearch(searchX, searchY, searchWidth,
+                searchHeight, currX + half, currY, size - half);
         }
 
-        if (intersect(searchX, searchY, searchWidth, searchHeight, currX, currY + half, half, size - half)) {
-            count += sw.regionSearch(searchX, searchY, searchWidth, searchHeight, currX, currY + half, half);
+        if (intersect(searchX, searchY, searchWidth, searchHeight, currX, currY
+            + half, half, size - half)) {
+            count += sw.regionSearch(searchX, searchY, searchWidth,
+                searchHeight, currX, currY + half, half);
         }
 
-        if (intersect(searchX, searchY, searchWidth, searchHeight, currX + half, currY + half, size - half, size - half)) {
-            count += se.regionSearch(searchX, searchY, searchWidth, searchHeight, currX + half, currY + half, size - half);
+        if (intersect(searchX, searchY, searchWidth, searchHeight, currX + half,
+            currY + half, size - half, size - half)) {
+            count += se.regionSearch(searchX, searchY, searchWidth,
+                searchHeight, currX + half, currY + half, size - half);
         }
 
         return count;
     }
-    
+
+
+    /**
+     * Searches for a KVPair in the InternalNode based on the Point value
+     * 
+     * @param p
+     *            The point to search for
+     * @param x
+     *            the current x
+     * @param y
+     *            the current y
+     * @param width
+     *            the current width
+     * @param height
+     *            the current height
+     */
     @Override
-    public
-        KVPair<String, Point>
-        search(Point p, int x, int y, int width, int height)
-    {
+    public KVPair<String, Point> search(
+        Point p,
+        int x,
+        int y,
+        int width,
+        int height) {
+
         int midX = (x + width) / 2;
         int midY = (y + height) / 2;
 
+        // determine which quadrant the point would be under and step into it
         if (p.getX() <= midX && p.getY() <= midY) {
             return nw.search(p, x, y, midX, midY);
-        } else if (p.getX() > midX && p.getY() <= midY) {
+        }
+        else if (p.getX() > midX && p.getY() <= midY) {
             return ne.search(p, midX + 1, y, width, midY);
-        } else if (p.getX() <= midX && p.getY() > midY) {
+        }
+        else if (p.getX() <= midX && p.getY() > midY) {
             return sw.search(p, x, midY + 1, midX, height);
-        } else {
+        }
+        else {
             return se.search(p, midX + 1, midY + 1, width, height);
         }
     }
+
 
     private boolean intersect(
         int x1,
@@ -154,9 +259,9 @@ public class InternalNode implements QuadNode {
         int y2,
         int w2,
         int h2) {
-        
-        return !(x1 + w1 <= x2 || x2 + w2 <= x1 ||
-            y1 + h1 <= y2 || y2 + h2 <= y1);
+
+        return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2 || y2
+            + h2 <= y1);
     }
 
 }
