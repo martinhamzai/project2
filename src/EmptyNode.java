@@ -16,7 +16,7 @@ public class EmptyNode implements QuadNode {
     }
 
 
-    public boolean insert(KVPair<String, Point> pair, int xMin, int xMax, int yMin, int yMax) {
+    public QuadNode insert(KVPair<String, Point> pair, int xMin, int xMax, int yMin, int yMax) {
         return new LeafNode(pair);
     }
 
