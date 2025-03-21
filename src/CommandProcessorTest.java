@@ -83,14 +83,16 @@ public class CommandProcessorTest extends TestCase {
      * Tests the remove by coordinates branch of the processor() method.
      */
     public void testRemoveByCoords() {
-        cmdProc.processor("insert p 1 1");
+        cmdProc.processor("insert p1 1 1");
 
-        cmdProc.processor("insert p 2 2");
-        cmdProc.processor("insert p 3 3");
+        cmdProc.processor("insert p2 2 2");
+        cmdProc.processor("insert p3 3 3");
         
         systemOut().clearHistory();
         cmdProc.processor("remove 1 1");
-        assertEquals(systemOut().getHistory(), "Removed point: (p, 1, 1)\n");
+        assertEquals(systemOut().getHistory(), "Removed point: (p1, 1, 1)\n");
+        
+        cmdProc.processor("dump");
         
         systemOut().clearHistory();
         cmdProc.processor("remove 43 2");

@@ -73,26 +73,26 @@ public class InternalNode
     @Override
     public
         QuadNode
-        remove(QuadNode node, Point p, int x, int y, int width, int height)
+        remove(Point p, int x, int y, int width, int height)
     {
         int midX = (x + width) / 2;
         int midY = (y + height) / 2;
 
         if (p.getX() <= midX && p.getY() <= midY)
         {
-            nw = nw.remove(nw, p, x, y, width / 2, height / 2);
+            nw = nw.remove(p, x, y, width / 2, height / 2);
         }
         else if (p.getX() > midX && p.getY() <= midY)
         {
-            ne = ne.remove(ne, p, midX + 1, y, width / 2, height / 2);
+            ne = ne.remove(p, midX + 1, y, width / 2, height / 2);
         }
         else if (p.getX() <= midX && p.getY() > midY)
         {
-            sw = sw.remove(sw, p, x, midY + 1, width / 2, height / 2);
+            sw = sw.remove(p, x, midY + 1, width / 2, height / 2);
         }
         else
         {
-            se = se.remove(se, p, midX + 1, midY + 1, width / 2, height / 2);
+            se = se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
         }
 
         if (nw instanceof EmptyNode && ne instanceof EmptyNode
@@ -117,6 +117,27 @@ public class InternalNode
         int half = size / 2; 
         
         return count;
+    }
+
+    
+
+    @Override
+    public
+        KVPair<String, Point>
+        search(Point p, int x, int y, int width, int height)
+    {
+        int midX = (x + width) / 2;
+        int midY = (y + height) / 2;
+
+        if (p.getX() <= midX && p.getY() <= midY) {
+            return nw.search(p, x, y, midX, midY);
+        } else if (p.getX() > midX && p.getY() <= midY) {
+            return ne.search(p, midX + 1, y, width, midY);
+        } else if (p.getX() <= midX && p.getY() > midY) {
+            return sw.search(p, x, midY + 1, midX, height);
+        } else {
+            return se.search(p, midX + 1, midY + 1, width, height);
+        }
     }
 
 }

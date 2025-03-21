@@ -81,7 +81,16 @@ public class Database {
      *      The value of the KVPair to remove.
      */
     public void remove(Point p) {
-        qt.remove(p);
+        KVPair<String, Point>  pair = qt.search(p);
+        if (pair != null)
+        {
+            qt.remove(pair.value());
+            list.remove(pair.key());
+        }
+        else
+        {
+            System.out.println("Point not found: (" + p.toString() + ")");
+        }
     }
 
 
