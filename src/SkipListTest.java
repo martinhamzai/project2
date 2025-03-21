@@ -153,8 +153,8 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 1, "
-            + "Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkipList si"
-            + "ze is" + ": 2\n", systemOut().getHistory());
+                + "Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkipList"
+                + " size is" + ": 2\n", systemOut().getHistory());
         systemOut().clearHistory();
 
         // depth 2, ensure before kv1 and head level changes
@@ -163,8 +163,8 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 2, "
-            + "Value (int, 2)\nNode has depth 1, Value (int1, 1)\nNode has de"
-            + "pth 2, Value (int2, 2)\nSkipList size is: 3\n", systemOut()
+                + "Value (int, 2)\nNode has depth 1, Value (int1, 1)\nNode has de"
+                + "pth 2, Value (int2, 2)\nSkipList size is: 3\n", systemOut()
                     .getHistory());
         systemOut().clearHistory();
 
@@ -175,9 +175,9 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 3, Value (null)\nNode has depth 2, "
-            + "Value (int, 2)\nNode has depth 3, Value (int1, 1)\nNode has de"
-            + "pth 1, Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkip"
-            + "List size is: 4\n", systemOut().getHistory());
+                + "Value (int, 2)\nNode has depth 3, Value (int1, 1)\nNode has de"
+                + "pth 1, Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkip"
+                + "List size is: 4\n", systemOut().getHistory());
     }
 
 
@@ -186,14 +186,16 @@ public class SkipListTest extends TestCase {
      */
     public void testAdjustHead() {
         sl.dump();
-        assertEquals("SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
-            + "ize is: 0\n", systemOut().getHistory());
+        assertEquals(
+            "SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
+                + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
 
         sl.adjustHead(2);
         sl.dump();
-        assertEquals("SkipList dump:\nNode has depth 2, Value (null)\nSkipList s"
-            + "ize is: 0\n", systemOut().getHistory());
+        assertEquals(
+            "SkipList dump:\nNode has depth 2, Value (null)\nSkipList s"
+                + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
     }
 
@@ -265,8 +267,9 @@ public class SkipListTest extends TestCase {
 
         // no nodes
         sl.dump();
-        assertEquals("SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
-            + "ize is: 0\n", systemOut().getHistory());
+        assertEquals(
+            "SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
+                + "ize is: 0\n", systemOut().getHistory());
         systemOut().clearHistory();
 
         // has nodes

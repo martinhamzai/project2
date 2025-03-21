@@ -26,10 +26,15 @@ public class LeafNode implements QuadNode {
      * Insert a new pair into the LeafNode.
      * 
      * @param insertPair
+     *            pair to insert
      * @param x
+     *            curr x
      * @param y
+     *            curr y
      * @param width
+     *            curr width
      * @param height
+     *            curr height
      * 
      * @return this LeafNode or a new InternalNode if decomposition rule comes
      *         into play
@@ -226,7 +231,8 @@ public class LeafNode implements QuadNode {
         }
         return null;
     }
-    
+
+
     /**
      * @return the list of pairs in the LeafNode.
      */

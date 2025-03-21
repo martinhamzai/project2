@@ -31,6 +31,17 @@ public class EmptyNode implements QuadNode {
     /**
      * Creates a new LeafNode if the QuadTree lands on the EmptyNode for
      * insertion.
+     * 
+     * @param pair
+     *            KVPair to insert
+     * @param x
+     *            curr x
+     * @param y
+     *            curr y
+     * @param width
+     *            curr width
+     * @param height
+     *            curr height
      */
     @Override
     public QuadNode insert(
@@ -45,6 +56,15 @@ public class EmptyNode implements QuadNode {
 
     /**
      * Prints out the information regarding the EmptyNode.
+     * 
+     * @param depth
+     *            the depth of the node
+     * @param x
+     *            curr x
+     * @param y
+     *            curr y
+     * @param size
+     *            curr width and height
      */
     @Override
     public int dump(int depth, int x, int y, int size) {
@@ -61,10 +81,15 @@ public class EmptyNode implements QuadNode {
      * Redundant method inherited from the QuadNode interface.
      * 
      * @param p
+     *            point
      * @param x
+     *            curr x
      * @param y
+     *            curr y
      * @param width
+     *            curr width
      * @param height
+     *            curr height
      * 
      * @return null
      */
@@ -78,12 +103,19 @@ public class EmptyNode implements QuadNode {
      * Returns 1 to indicate regionSearch hit the empty node.
      * 
      * @param searchX
+     *            search boundary
      * @param searchY
+     *            search boundary
      * @param searchWidth
+     *            search boundary
      * @param searchHeight
+     *            search boundary
      * @param currX
+     *            current x
      * @param currY
+     *            current y
      * @param size
+     *            current width and height
      * 
      * @return 1
      */
@@ -105,10 +137,15 @@ public class EmptyNode implements QuadNode {
      * Redundant method inherited from the QuadNode interface.
      * 
      * @param p
+     *            point
      * @param x
+     *            curr x
      * @param y
+     *            curr y
      * @param width
+     *            curr width
      * @param height
+     *            curr height
      * 
      * @return null
      */

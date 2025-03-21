@@ -7,7 +7,7 @@
 public class QuadTree {
 
     private QuadNode root;
-    private final int SIZE = 1024;
+    private final int size = 1024;
 
     /**
      * Create a new QuadTree with the root as an EmptyNode.
@@ -21,10 +21,11 @@ public class QuadTree {
      * Insert a new KVPair into the tree.
      * 
      * @param pair
+     *            the KVPair to insert
      * @return true
      */
     public boolean insert(KVPair<String, Point> pair) {
-        root = root.insert(pair, 0, 0, SIZE - 1, SIZE - 1);
+        root = root.insert(pair, 0, 0, size - 1, size - 1);
         return true;
     }
 
@@ -34,7 +35,7 @@ public class QuadTree {
      */
     public void dump() {
         System.out.println("QuadTree dump:");
-        int count = root.dump(0, 0, 0, SIZE);
+        int count = root.dump(0, 0, 0, size);
         System.out.println(count + " quadtree nodes printed");
     }
 
@@ -43,13 +44,17 @@ public class QuadTree {
      * Print out all nodes inside a rectangular area in the quadtree
      * 
      * @param x
+     *            search boundary
      * @param y
+     *            search boundary
      * @param width
+     *            search boundary
      * @param height
+     *            search boundary
      * @return the number of nodes visited
      */
     public int regionSearch(int x, int y, int width, int height) {
-        return root.regionSearch(x, y, width, height, 0, 0, SIZE);
+        return root.regionSearch(x, y, width, height, 0, 0, size);
     }
 
 
@@ -57,10 +62,11 @@ public class QuadTree {
      * search for a point in the quadtree
      * 
      * @param p
+     *            Point to find
      * @return the KVPair of the point if found
      */
     public KVPair<String, Point> search(Point p) {
-        return root.search(p, 0, 0, SIZE - 1, SIZE - 1);
+        return root.search(p, 0, 0, size - 1, size - 1);
     }
 
 
@@ -71,7 +77,7 @@ public class QuadTree {
      *            the point to remove
      */
     public void remove(Point p) {
-        root = root.remove(p, 0, 0, SIZE - 1, SIZE - 1);
+        root = root.remove(p, 0, 0, size - 1, size - 1);
     }
 
 }
