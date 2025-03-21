@@ -41,17 +41,16 @@ public class EmptyNodeTest extends TestCase {
     public void testRemove() {
         assertTrue(en.remove(null, 0, 0, 0, 0) == null);
     }
-    
+
     /**
-     * Tests the regionSearch method
+     * Tests the regionsearch method
      */
-    
     public void testRegionSearch() {
         assertTrue(en.regionSearch(0, 0, 0, 0, 0, 0, 0) == 1);
     }
     
     /**
-     * Tests the search method
+     * Tests the search method.
      */
     public void testSearch() {
         assertTrue(en.search(null, 0, 0, 0, 0) == null);

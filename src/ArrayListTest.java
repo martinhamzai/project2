@@ -102,6 +102,22 @@ public class ArrayListTest
         assertTrue(list.size() == 1);
         assertTrue(list.remove(0) == 1);
         assertTrue(list.size() == 0);
+        
+        list.insert(2); 
+        list.insert(3); 
+        assertTrue(list.remove(0) == 2);
+        assertTrue(list.size() == 1);
+        
+        try
+        {
+            list.remove(-1);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            exception = true;
+        }
+        assertTrue(exception);
+        
     }
 
 }
