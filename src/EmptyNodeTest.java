@@ -57,7 +57,7 @@ public class EmptyNodeTest extends TestCase {
      * Tests the regionsearch method
      */
     public void testRegionSearch() {
-        EmptyNode en = EmptyNode.getInstance();
+        en = EmptyNode.getInstance();
         int result = en.regionSearch(0, 0, 0, 0, 0, 0, 0);
         assertEquals(1, result);
     }

@@ -43,7 +43,7 @@ public class LeafNodeTest extends TestCase {
      * Test insert that changes the leafnode into internalnode.
      */
     public void testInsertToInternal() {
-        LeafNode ln = new LeafNode(new KVPair<>("a", new Point(1, 1)));
+        ln = new LeafNode(new KVPair<>("a", new Point(1, 1)));
         ln = (LeafNode)ln.insert(pair1, 0, 0, 1024, 1024);
         ln = (LeafNode)ln.insert(pair2, 0, 0, 1024, 1024);
 
