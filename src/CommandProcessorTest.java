@@ -67,6 +67,7 @@ public class CommandProcessorTest extends TestCase {
      * Tests the remove by name branch of the processor() method.
      */
     public void testRemoveByName() {
+        cmdProc.processor("insert p 1 1");
         cmdProc.processor("remove p");
         assertEquals(systemOut().getHistory(), "Remove by name\n");
     }
@@ -76,6 +77,7 @@ public class CommandProcessorTest extends TestCase {
      * Tests the remove by coordinates branch of the processor() method.
      */
     public void testRemoveByCoords() {
+        cmdProc.processor("insert p 1 1");
         cmdProc.processor("remove 1 1");
         assertEquals(systemOut().getHistory(), "Remove by coords\n");
     }
