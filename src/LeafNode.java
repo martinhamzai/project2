@@ -9,18 +9,12 @@ public class LeafNode implements QuadNode {
     }
     
     public QuadNode insert(KVPair<String, Point> insertPair, int x, int y, int width, int height) {
-        Point p1 = pairs.get(0).value();
-        Point p2 = insertPair.value();  
+        pairs.insert(insertPair);
         
-        if (p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
-            pairs.insert(insertPair);
+        if (pairs.size() < 4 || same()) {
             return this;
         }
-        
-        if (width <= 1 && height <= 1) {
-            pairs.insert(insertPair);
-            return this;
-        }
+         
         
         InternalNode internal = new InternalNode();
         for (int i = 0; i < pairs.size(); i++) {
@@ -28,6 +22,20 @@ public class LeafNode implements QuadNode {
         }
         internal = (InternalNode) internal.insert(insertPair, x, y, width, height);
         return internal;
+    }
+    
+    private boolean same() {
+        if (pairs.size() == 0) {
+            return true;
+        }
+        Point p = pairs.get(0).value();
+        for (int i = 1; i < pairs.size(); i++) {
+            Point compareP = pairs.get(i).value();
+            if (p.getX() != compareP.getX() || p.getY() != compareP.getY()) {
+                return false;
+            }
+        }
+        return true;
     }
     
     public int dump(int depth, int x, int y, int size) {
