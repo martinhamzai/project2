@@ -310,9 +310,17 @@ public class CommandProcessorTest
      */
     public void testDump2()
     {
-        cmdProc.processor("insert p_p 1 20");
+        cmdProc.processor("insert p_p 512 512");
+        assertEquals(
+            systemOut().getHistory(),
+            "Point inserted: (p_p, 512, 512)\n");
         systemOut().clearHistory();
+        cmdProc.processor("insert p2 1023 1023");
+        assertEquals(
+            systemOut().getHistory(),
+            "Point inserted: (p2, 1023, 1023)\n");
         
+        systemOut().clearHistory();
         cmdProc.processor("dump");
         assertFalse(
             systemOut().getHistory().equals("SkipList dump:\nNode has depth "
