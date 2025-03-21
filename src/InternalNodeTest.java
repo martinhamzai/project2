@@ -3,7 +3,7 @@ import student.TestCase;
 public class InternalNodeTest extends TestCase 
 {
     
-    InternalNode node;
+    private InternalNode node;
     
     
     public void setUp()
@@ -59,6 +59,20 @@ public void testSearch() {
         assertEquals(node.regionSearch(5, 4, 4, 4, 0, 0, 4), 1);
         assertEquals(node.regionSearch(20, 20, 4, 4, 0, 0, 4), 1);
         assertEquals(node.regionSearch(-1, -2, 2, 2, 0, 0, 4), 1);
+        assertNotSame(node.regionSearch(2, 2, 4, 4, 0, 0, 4), 6);
+        assertNotSame(node.regionSearch(4, 4, 4, 4, 0, 0, 4), 0);
+        assertNotSame(node.regionSearch(5, 4, 4, 4, 0, 0, 4), 3);
+        assertNotSame(node.regionSearch(20, 20, 4, 4, 0, 0, 4), 2);
+        assertNotSame(node.regionSearch(-1, -2, 2, 2, 0, 0, 4), 6);
         
+    }
+    
+    
+    public void testRemove()
+    {
+        KVPair<String, Point> p = new KVPair<>("p1", new Point(1, 1));
+        node.insert(new KVPair<>("p1", new Point(1, 1)), 0, 0, 4, 4);
+        node.remove(p.value(), 0, 0, 4, 4);
+        assertNotSame(node, EmptyNode.getInstance());
     }
 }
