@@ -236,16 +236,16 @@ public class InternalNode implements QuadNode {
 
         // determine which quadrant the point would be under and step into it
         if (p.getX() <= midX && p.getY() <= midY) {
-            return nw.search(p, x, y, midX, midY);
+            return nw.search(p, x, y, width / 2, width / 2);
         }
         else if (p.getX() > midX && p.getY() <= midY) {
-            return ne.search(p, midX + 1, y, width, midY);
+            return ne.search(p, midX + 1, y, width / 2, width / 2);
         }
         else if (p.getX() <= midX && p.getY() > midY) {
-            return sw.search(p, x, midY + 1, midX, height);
+            return sw.search(p, x, midY + 1, width / 2, height / 2);
         }
         else {
-            return se.search(p, midX + 1, midY + 1, width, height);
+            return se.search(p, midX + 1, midY + 1, width / 2, height / 2);
         }
     }
 
