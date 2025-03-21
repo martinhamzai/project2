@@ -85,8 +85,4 @@ public class EmptyNode implements QuadNode {
         return null;
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4de0c356c8a6e0a8bc588cf8363e341d6b7c0558
 }
