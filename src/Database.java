@@ -66,7 +66,7 @@ public class Database {
         KVPair<String, Point>  pair = list.remove(name);
         if (pair != null)
         {
-            //qt.remove(pair.value());
+            qt.remove(pair.value());
         }
         else
         {

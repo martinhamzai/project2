@@ -72,7 +72,7 @@ public class CommandProcessorTest extends TestCase {
         
         systemOut().clearHistory();
         cmdProc.processor("remove p");
-        assertEquals(systemOut().getHistory(), "Removed point: (p, 1, 1)\n");
+        assertEquals(systemOut().getHistory(), "Point removed: (p, 1, 1)\n");
         
         
         cmdProc.processor("dump");
