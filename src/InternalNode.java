@@ -23,10 +23,23 @@ public class InternalNode<K extends Comparable<K>, E>  implements QuadNode{
     
     
     @Override
-    public QuadNode insert(KVPair<String, Point> pair, int xMin, int xMax, int yMin, int yMax)
-    {
-        // TODO Auto-generated method stub
-        return false;
+    public QuadNode insert(KVPair<String, Point> pair, int x, int y, int width, int height)
+    {   
+        Point p = pair.value();
+        int midX = (x + width) / 2;
+        int midY = (x + height) / 2;
+        
+        if (p.getX() <= midX && p.getY() <= midY){
+            nw = nw.insert(pair, x, y, width, height);
+        }
+        else if (p.getX() > midX && p.getY() <= midY);{
+            sw = sw.insert(pair, x, y, width, height);
+        }
+        else 
+        
+        
+            
+        return NULL;
     }
     
 }
