@@ -7,10 +7,10 @@ public class LeafNode implements QuadNode {
         this.pair = pair;
     }
     
-    public QuadNode insert(KVPair<String, Point> insertPair, int xMin, int xMax, int yMin, int yMax) {
+    public QuadNode insert(KVPair<String, Point> insertPair, int x, int y, int width, int height) {
         InternalNode internal = new InternalNode();
-        internal =  internal.insert(pair, xMin, xMax, yMin, yMax);
-        internal = internal.insert(insertPair, xMin, xMax, yMin, yMax);
+        internal =  internal.insert(pair, x, y, width, height);
+        internal = internal.insert(insertPair, x, y, width, height);
         return internal;
     }
 
