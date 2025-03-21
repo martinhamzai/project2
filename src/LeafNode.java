@@ -54,14 +54,17 @@ public class LeafNode implements QuadNode {
     }
 
     @Override
-    public
-        KVPair<String, Point>
-        remove(Point p, int x, int y, int wdith, int height)
+    public KVPair<String, Point> remove(Point p, int x, int y, int width, int height)
     {
-        // TODO Auto-generated method stub
+        ArrayList<KVPair<String, Point>> values = this.getList();  // Access pairs via getter
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i).value().equals(p)) {
+                // Item found and removed
+                return values.get(i); // Removes and returns the KVPair
+            }
+        }
         return null;
     }
-    
     
     
     
