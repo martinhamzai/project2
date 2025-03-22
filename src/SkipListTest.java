@@ -9,11 +9,12 @@ import student.TestableRandom;
  * This class tests the methods of SkipList class
  * 
  * @author Martin Hamzai and Richmond Southall
- * 
  * @version 2025-02-25
  */
 
-public class SkipListTest extends TestCase {
+public class SkipListTest
+    extends TestCase
+{
 
     // Declared SkipList object to use in test methods
     private SkipList<String, Integer> sl;
@@ -34,7 +35,8 @@ public class SkipListTest extends TestCase {
     /**
      * Initializes the SkipList object for test methods
      */
-    public void setUp() {
+    public void setUp()
+    {
         sl = new SkipList<String, Integer>();
 
         int1Name = "int1";
@@ -53,10 +55,11 @@ public class SkipListTest extends TestCase {
 
 
     /***
-     * Example 1: Test `randomLevel` method with
-     * predetermined random values using `TestableRandom`
+     * Example 1: Test `randomLevel` method with predetermined random values
+     * using `TestableRandom`
      */
-    public void testRandomLevelOne() {
+    public void testRandomLevelOne()
+    {
         TestableRandom.setNextBooleans(false);
         int randomLevelValue = sl.randomLevel();
 
@@ -71,10 +74,11 @@ public class SkipListTest extends TestCase {
 
 
     /***
-     * Example 2: Test `randomLevel` method with
-     * predetermined random values using `TestableRandom`
+     * Example 2: Test `randomLevel` method with predetermined random values
+     * using `TestableRandom`
      */
-    public void testRandomLevelFour() {
+    public void testRandomLevelFour()
+    {
         TestableRandom.setNextBooleans(true, true, true, false, true, false);
         int randomLevelValue = sl.randomLevel();
 
@@ -91,7 +95,8 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the search() method for the SkipList.
      */
-    public void testSearch() {
+    public void testSearch()
+    {
         // test empty list
         ArrayList<KVPair<String, Integer>> pairs = sl.search(kv2.key());
         assertTrue(pairs.size() == 0);
@@ -126,7 +131,8 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the size() method for the SkipList.
      */
-    public void testSize() {
+    public void testSize()
+    {
         assertTrue(sl.size() == 0);
         sl.insert(kv1);
         assertTrue(sl.size() == 1);
@@ -136,15 +142,16 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the insert() method for the SkipList.
      */
-    public void testInsert() {
+    public void testInsert()
+    {
         // depth 1
         TestableRandom.setNextBooleans(false);
         sl.insert(kv1);
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 1, Value (null)\nNode has depth 1,"
-                + " Value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
-                    .getHistory());
+                + " Value (int1, 1)\nSkipList size is" + ": 1\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
         // depth 2, ensure after kv1 and head level changes
@@ -154,7 +161,8 @@ public class SkipListTest extends TestCase {
         assertEquals(
             "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 1, "
                 + "Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkipList"
-                + " size is" + ": 2\n", systemOut().getHistory());
+                + " size is" + ": 2\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
         // depth 2, ensure before kv1 and head level changes
@@ -163,9 +171,10 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 2, Value (null)\nNode has depth 2, "
-                + "Value (int, 2)\nNode has depth 1, Value (int1, 1)\nNode has de"
-                + "pth 2, Value (int2, 2)\nSkipList size is: 3\n", systemOut()
-                    .getHistory());
+                + "Value (int, 2)\nNode has depth 1,"
+                + " Value (int1, 1)\nNode has de"
+                + "pth 2, Value (int2, 2)\nSkipList size is: 3\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
         // depth 3, ensure head changes and kv is placed before node with same
@@ -175,27 +184,32 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 3, Value (null)\nNode has depth 2, "
-                + "Value (int, 2)\nNode has depth 3, Value (int1, 1)\nNode has de"
-                + "pth 1, Value (int1, 1)\nNode has depth 2, Value (int2, 2)\nSkip"
-                + "List size is: 4\n", systemOut().getHistory());
+                + "Value (int, 2)\nNode has depth 3,"
+                + " Value (int1, 1)\nNode has de"
+                + "pth 1, Value (int1, 1)\nNode has depth 2,"
+                + " Value (int2, 2)\nSkip" + "List size is: 4\n",
+            systemOut().getHistory());
     }
 
 
     /**
      * Tests the adjustHead() method for the SkipList.
      */
-    public void testAdjustHead() {
+    public void testAdjustHead()
+    {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
-                + "ize is: 0\n", systemOut().getHistory());
+                + "ize is: 0\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
         sl.adjustHead(2);
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 2, Value (null)\nSkipList s"
-                + "ize is: 0\n", systemOut().getHistory());
+                + "ize is: 0\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
     }
 
@@ -203,7 +217,8 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the remove(key) method for the SkipList.
      */
-    public void testRemoveKey() {
+    public void testRemoveKey()
+    {
         // empty list
         assertEquals(sl.remove(kv1.key()), null);
 
@@ -235,7 +250,8 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the remove(value) method for the SkipList.
      */
-    public void testRemoveValue() {
+    public void testRemoveValue()
+    {
         // empty list
         assertEquals(sl.removeByValue(kv1.value()), null);
 
@@ -263,13 +279,15 @@ public class SkipListTest extends TestCase {
     /**
      * Tests the dump() method for the SkipList.
      */
-    public void testDump() {
+    public void testDump()
+    {
 
         // no nodes
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 1, Value (null)\nSkipList s"
-                + "ize is: 0\n", systemOut().getHistory());
+                + "ize is: 0\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
         // has nodes
@@ -278,8 +296,8 @@ public class SkipListTest extends TestCase {
         sl.dump();
         assertEquals(
             "SkipList dump:\nNode has depth 1, Value (null)\nNode has depth 1,"
-                + " Value (int1, 1)\nSkipList size is" + ": 1\n", systemOut()
-                    .getHistory());
+                + " Value (int1, 1)\nSkipList size is" + ": 1\n",
+            systemOut().getHistory());
         systemOut().clearHistory();
 
     }

@@ -4,7 +4,8 @@
  * @author Martin Hamzai and Richmond Southall
  * @version 03-22-2025
  */
-public class QuadTree {
+public class QuadTree
+{
 
     private QuadNode root;
     private final int size = 1024;
@@ -12,7 +13,8 @@ public class QuadTree {
     /**
      * Create a new QuadTree with the root as an EmptyNode.
      */
-    public QuadTree() {
+    public QuadTree()
+    {
         root = EmptyNode.getInstance();
     }
 
@@ -24,7 +26,8 @@ public class QuadTree {
      *            the KVPair to insert
      * @return true
      */
-    public boolean insert(KVPair<String, Point> pair) {
+    public boolean insert(KVPair<String, Point> pair)
+    {
         root = root.insert(pair, 0, 0, size - 1, size - 1);
         return true;
     }
@@ -33,7 +36,8 @@ public class QuadTree {
     /**
      * Print out all of the nodes in the tree.
      */
-    public void dump() {
+    public void dump()
+    {
         System.out.println("QuadTree dump:");
         int count = root.dump(0, 0, 0, size);
         System.out.println(count + " quadtree nodes printed");
@@ -53,7 +57,8 @@ public class QuadTree {
      *            search boundary
      * @return the number of nodes visited
      */
-    public int regionSearch(int x, int y, int width, int height) {
+    public int regionSearch(int x, int y, int width, int height)
+    {
         return root.regionSearch(x, y, width, height, 0, 0, size);
     }
 
@@ -65,7 +70,8 @@ public class QuadTree {
      *            Point to find
      * @return the KVPair of the point if found
      */
-    public KVPair<String, Point> search(Point p) {
+    public KVPair<String, Point> search(Point p)
+    {
         return root.search(p, 0, 0, size - 1, size - 1);
     }
 
@@ -76,7 +82,8 @@ public class QuadTree {
      * @param p
      *            the point to remove
      */
-    public void remove(Point p) {
+    public void remove(Point p)
+    {
         root = root.remove(p, 0, 0, size - 1, size - 1);
     }
 
