@@ -125,6 +125,64 @@ public class CommandProcessorTest
             systemOut().getHistory(),
             "Point inserted: (pb, 1023, 1023)\n");
         systemOut().clearHistory();
+        
+        cmdProc.processor("insert p 60 60");
+        cmdProc.processor("insert p_p 234 543");
+        cmdProc.processor("insert pip 234 214");
+        
+        cmdProc.processor("dump");
+        String str = systemOut().getHistory();
+        assertEquals(str.substring(str.length() / 2 - 48),
+            "SkipList size is: 11\r\n"
+            + "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024: Internal\r\n"
+            + "  Node at 0, 0, 512: Internal\r\n"
+            + "    Node at 0, 0, 256: Internal\r\n"
+            + "      Node at 0, 0, 128:\r\n"
+            + "        (p, 1, 1)\r\n"
+            + "        (p, 2, 4)\r\n"
+            + "        (p, 60, 60)\r\n"
+            + "      Node at 128, 0, 128: Empty\r\n"
+            + "      Node at 0, 128, 128: Empty\r\n"
+            + "      Node at 128, 128, 128:\r\n"
+            + "        (pip, 234, 214)\r\n"
+            + "    Node at 256, 0, 256: Empty\r\n"
+            + "    Node at 0, 256, 256: Empty\r\n"
+            + "    Node at 256, 256, 256: Empty\r\n"
+            + "  Node at 512, 0, 512:\r\n"
+            + "    (p, 1023, 0)\r\n"
+            + "  Node at 0, 512, 512:\r\n"
+            + "    (p5, 3, 600)\r\n"
+            + "    (p, 0, 1023)\r\n"
+            + "    (p_p, 234, 543)\r\n"
+            + "  Node at 512, 512, 512:\r\n"
+            + "    (pg, 900, 900)\r\n"
+            + "    (py, 850, 850)\r\n"
+            + "    (pb, 1023, 1023)\r\n"
+            + "13 quadtree nodes printed\r\n");
+        
+        cmdProc.processor("remove 1 1");
+        cmdProc.processor("remove 2 4");
+        cmdProc.processor("remove 0 1023");
+        cmdProc.processor("remove 1023 0");
+        cmdProc.processor("remove 900 900");
+        cmdProc.processor("remove 850 850");
+        cmdProc.processor("remove 1023 1023");
+        cmdProc.processor("remove 60 60");
+        cmdProc.processor("remove 234 543");
+        cmdProc.processor("remove 234 214");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("dump");
+        String str2 = systemOut().getHistory();
+        assertEquals(str2.substring(str2.length() / 2 - 26), "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024: Internal\r\n"
+            + "  Node at 0, 0, 512: Empty\r\n"
+            + "  Node at 512, 0, 512: Empty\r\n"
+            + "  Node at 0, 512, 512:\r\n"
+            + "    (p5, 3, 600)\r\n"
+            + "  Node at 512, 512, 512: Empty\r\n"
+            + "5 quadtree nodes printed\r\n");
     }
 
 

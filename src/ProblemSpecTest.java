@@ -57,7 +57,7 @@ public class ProblemSpecTest
         String output = systemOut().getHistory();
 
         // Expected output from file
-        //String referenceOutput = readFile("./SyntaxTest1Out.txt");
+        //String referenceOutput = readFile("SyntaxTest1Out.txt");
 
         // Compare the two outputs
         //assertFuzzyEquals(referenceOutput, output);
@@ -105,7 +105,7 @@ public class ProblemSpecTest
         String output = systemOut().getHistory();
 
         // Expected output from file
-        //String referenceOutput = readFile("./SyntaxTest2Out.txt");
+        //String referenceOutput = readFile("SyntaxTest2Out.txt");
 
         // Compare the two outputs
         // once you have implemented your project
