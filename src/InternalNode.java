@@ -1,3 +1,5 @@
+import java.util.Set;
+
 /**
  * InternalNode class that implements the QuadNode interface. The QuadTree uses
  * this type of Node when a LeafNode contains more than 3 Points that are
@@ -152,6 +154,7 @@ public class InternalNode
             se = se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
         }
 
+        
         // if all 4 quadrants are empty nodes
         if (nw instanceof EmptyNode && ne instanceof EmptyNode
             && sw instanceof EmptyNode && se instanceof EmptyNode)
@@ -339,5 +342,14 @@ public class InternalNode
             || y2 + h2 <= y1);
     }
     
-
+    /**
+     * adds any dups in this node to the duplicates list
+     */
+    public void findDup() {
+        nw.findDup();
+        ne.findDup();
+        sw.findDup();
+        se.findDup();
+    }
+    
 }

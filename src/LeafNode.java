@@ -1,3 +1,5 @@
+import java.util.Set;
+
 /**
  * The class is a LeafNode which stores points inside a QuadTree. LeafNodes may
  * hold 1-3 points except if the points are the same, which in that case can
@@ -6,7 +8,9 @@
  * @author Martin Hamzai and Richmond Southall
  * @version 03-22-2025
  */
-public class LeafNode implements QuadNode {
+public class LeafNode
+    implements QuadNode
+{
 
     private ArrayList<KVPair<String, Point>> pairs;
 
@@ -16,7 +20,8 @@ public class LeafNode implements QuadNode {
      * @param pair
      *            The pair to store in the node
      */
-    public LeafNode(KVPair<String, Point> pair) {
+    public LeafNode(KVPair<String, Point> pair)
+    {
         pairs = new ArrayList<>();
         pairs.insert(pair);
     }
@@ -35,46 +40,53 @@ public class LeafNode implements QuadNode {
      *            curr width
      * @param height
      *            curr height
-     * 
      * @return this LeafNode or a new InternalNode if decomposition rule comes
-     *         into play
+     *             into play
      */
     public QuadNode insert(
         KVPair<String, Point> insertPair,
         int x,
         int y,
         int width,
-        int height) {
+        int height)
+    {
 
         // check if new node will affect decomp before officially adding it
         ArrayList<KVPair<String, Point>> temp = new ArrayList<>();
-        for (int i = 0; i < pairs.size(); i++) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
             temp.insert(pairs.get(i));
         }
         temp.insert(insertPair);
 
-        if (temp.size() <= 3 || same(temp)) {
+        if (temp.size() <= 3 || same(temp))
+        {
             pairs = temp;
             return this;
         }
 
         // if over 3 add the points to internalnode
         InternalNode internal = new InternalNode();
-        for (int i = 0; i < temp.size(); i++) {
+        for (int i = 0; i < temp.size(); i++)
+        {
             internal.insert(temp.get(i), x, y, width, height);
         }
         return internal;
     }
 
 
-    private boolean same(ArrayList<KVPair<String, Point>> list) {
-        if (list.size() == 0) {
+    private boolean same(ArrayList<KVPair<String, Point>> list)
+    {
+        if (list.size() == 0)
+        {
             return true;
         }
         Point ref = list.get(0).value();
-        for (int i = 1; i < list.size(); i++) {
+        for (int i = 1; i < list.size(); i++)
+        {
             Point p = list.get(i).value();
-            if (p.getX() != ref.getX() || p.getY() != ref.getY()) {
+            if (p.getX() != ref.getX() || p.getY() != ref.getY())
+            {
                 return false;
             }
         }
@@ -93,19 +105,22 @@ public class LeafNode implements QuadNode {
      *            the current y
      * @param size
      *            the current size
-     * 
      * @return 1 for the count of nodes
      */
-    public int dump(int depth, int x, int y, int size) {
+    public int dump(int depth, int x, int y, int size)
+    {
         // print spaces based on depth
-        for (int i = 0; i < depth; i++) {
+        for (int i = 0; i < depth; i++)
+        {
             System.out.print("  ");
         }
         System.out.println("Node at " + x + ", " + y + ", " + size + ":");
 
         // print each pair in the array
-        for (int i = 0; i < pairs.size(); i++) {
-            for (int j = 0; j < depth; j++) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            for (int j = 0; j < depth; j++)
+            {
                 System.out.print("  ");
             }
             System.out.println("  " + pairs.get(i).toString());
@@ -127,27 +142,31 @@ public class LeafNode implements QuadNode {
      *            the current width
      * @param height
      *            the current height
-     * 
      * @return this LeafNode
      */
     @Override
-    public QuadNode remove(Point p, int x, int y, int width, int height) {
+    public QuadNode remove(Point p, int x, int y, int width, int height)
+    {
         // check each pair in list and see if match
-        for (int i = 0; i < pairs.size(); i++) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
             Point current = pairs.get(i).value();
-            if (current.getX() == p.getX() && current.getY() == p.getY()) {
+            if (current.getX() == p.getX() && current.getY() == p.getY())
+            {
                 KVPair<String, Point> removed = pairs.remove(i);
-                System.out.println("Point removed: (" + removed.key() + ", " + p
-                    .getX() + ", " + p.getY() + ")");
-                if (pairs.size() == 0) {
+                System.out.println(
+                    "Point removed: (" + removed.key() + ", " + p.getX() + ", "
+                        + p.getY() + ")");
+                if (pairs.size() == 0)
+                {
                     return EmptyNode.getInstance();
                 }
                 return this;
             }
         }
         // if not found
-        System.out.println("Point not found: (" + p.getX() + ", " + p.getY()
-            + ")");
+        System.out
+            .println("Point not found: (" + p.getX() + ", " + p.getY() + ")");
         return this;
     }
 
@@ -169,7 +188,6 @@ public class LeafNode implements QuadNode {
      *            the current Y
      * @param size
      *            the current size
-     * 
      * @return 1 for the number of nodes visited
      */
     public int regionSearch(
@@ -179,19 +197,22 @@ public class LeafNode implements QuadNode {
         int searchHeight,
         int currX,
         int currY,
-        int size) {
+        int size)
+    {
 
         int count = 1; // visited this node
 
-        for (int i = 0; i < pairs.size(); i++) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
             Point p = pairs.get(i).value();
             int px = p.getX();
             int py = p.getY();
 
             // Check if point is inside the search rectangle
             if (px >= searchX && px < searchX + searchWidth && py >= searchY
-                && py < searchY + searchHeight) {
-                System.out.println(pairs.get(i).toString());
+                && py < searchY + searchHeight)
+            {
+                System.out.println("point found " + pairs.get(i).toString());
             }
         }
 
@@ -212,20 +233,19 @@ public class LeafNode implements QuadNode {
      *            the current width
      * @param height
      *            the current height
-     * 
      * @return the KVPair or null depending if found.
      */
     @Override
-    public KVPair<String, Point> search(
-        Point p,
-        int x,
-        int y,
-        int width,
-        int height) {
+    public
+        KVPair<String, Point>
+        search(Point p, int x, int y, int width, int height)
+    {
         // check all items for a match
-        for (int i = 0; i < pairs.size(); i++) {
-            if (pairs.get(i).value().getX() == p.getX() && pairs.get(i).value()
-                .getY() == p.getY()) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            if (pairs.get(i).value().getX() == p.getX()
+                && pairs.get(i).value().getY() == p.getY())
+            {
                 return pairs.get(i);
             }
         }
@@ -236,8 +256,31 @@ public class LeafNode implements QuadNode {
     /**
      * @return the list of pairs in the LeafNode.
      */
-    public ArrayList<KVPair<String, Point>> getPairs() {
+    public ArrayList<KVPair<String, Point>> getPairs()
+    {
         return pairs;
+    }
+
+
+    /**
+     * adds any dups in this node to the duplicates list
+     */
+    public void findDup()
+    {
+
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            for (int j = i + 1; j < pairs.size(); j++)
+            {
+                if (pairs.get(i).value().getX() == pairs.get(j).value().getX()
+                    && pairs.get(i).value().getY() == pairs.get(j).value()
+                        .getY())
+                {
+                    System.out.println("" + pairs.get(i).value().toString());
+                    break;
+                }
+            }
+        }
     }
 
 }

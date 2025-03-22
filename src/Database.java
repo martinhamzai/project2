@@ -1,4 +1,4 @@
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * This class is responsible for interfacing between the command processor, the
@@ -153,8 +153,13 @@ public class Database
      */
     public void duplicates()
     {
+        Set<Point> unique = new HashSet<>();
+        ArrayList<Point> duplicates = new ArrayList<>();
         System.out.println("Duplicate points");
-
+        qt.findDup();
+        for (int i = 0; i < duplicates.size(); i++) {
+            System.out.println(duplicates.get(i).toString());
+        }
     }
 
 

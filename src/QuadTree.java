@@ -87,4 +87,12 @@ public class QuadTree
         root = root.remove(p, 0, 0, size, size);
     }
 
+    /**
+     * find the duplicates in the tree and adds them to array list
+     */
+    public void findDup()
+    {
+        root.findDup();
+    }
+
 }

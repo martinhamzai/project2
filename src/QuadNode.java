@@ -1,3 +1,5 @@
+import java.util.Set;
+
 /**
  * Interface that describes a QuadNode which is implemented by various types of
  * nodes in the QuadTree
@@ -109,4 +111,12 @@ public interface QuadNode
     public
         KVPair<String, Point>
         search(Point p, int x, int y, int width, int height);
+
+
+    /**
+     * finds the dups
+     */
+    public void findDup();
+
+
 }
