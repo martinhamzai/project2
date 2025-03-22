@@ -28,7 +28,7 @@ public class QuadTree
      */
     public boolean insert(KVPair<String, Point> pair)
     {
-        root = root.insert(pair, 0, 0, size - 1, size - 1);
+        root = root.insert(pair, 0, 0, size, size);
         return true;
     }
 
@@ -72,7 +72,7 @@ public class QuadTree
      */
     public KVPair<String, Point> search(Point p)
     {
-        return root.search(p, 0, 0, size - 1, size - 1);
+        return root.search(p, 0, 0, size, size);
     }
 
 
@@ -84,7 +84,7 @@ public class QuadTree
      */
     public void remove(Point p)
     {
-        root = root.remove(p, 0, 0, size - 1, size - 1);
+        root = root.remove(p, 0, 0, size, size);
     }
 
 }

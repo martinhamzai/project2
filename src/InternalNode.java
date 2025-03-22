@@ -50,19 +50,19 @@ public class InternalNode
     {
 
         Point p = pair.value();
-        int midX = (x + width) / 2;
-        int midY = (y + height) / 2;
+        int midX = x + (width / 2);
+        int midY = y + (height / 2);
 
         // insert point to nw, new, sw, or se depending on area.
-        if (p.getX() <= midX && p.getY() <= midY)
+        if (p.getX() < midX && p.getY() < midY)
         {
             nw = nw.insert(pair, x, y, width / 2, height / 2);
         }
-        else if (p.getX() > midX && p.getY() <= midY)
+        else if (p.getX() >= midX && p.getY() < midY)
         {
             ne = ne.insert(pair, midX + 1, y, width / 2, height / 2);
         }
-        else if (p.getX() <= midX && p.getY() > midY)
+        else if (p.getX() < midX && p.getY() >= midY)
         {
             sw = sw.insert(pair, x, midY + 1, width / 2, height / 2);
         }
@@ -131,19 +131,19 @@ public class InternalNode
     @Override
     public QuadNode remove(Point p, int x, int y, int width, int height)
     {
-        int midX = (x + width) / 2;
-        int midY = (y + height) / 2;
+        int midX = x + (width / 2);
+        int midY = y + (height / 2);
 
         // check which quadrant to further search in
-        if (p.getX() <= midX && p.getY() <= midY)
+        if (p.getX() < midX && p.getY() < midY)
         {
             nw = nw.remove(p, x, y, width / 2, height / 2);
         }
-        else if (p.getX() > midX && p.getY() <= midY)
+        else if (p.getX() >= midX && p.getY() < midY)
         {
             ne = ne.remove(p, midX + 1, y, width / 2, height / 2);
         }
-        else if (p.getX() <= midX && p.getY() > midY)
+        else if (p.getX() < midX && p.getY() >= midY)
         {
             sw = sw.remove(p, x, midY + 1, width / 2, height / 2);
         }
@@ -301,8 +301,8 @@ public class InternalNode
         search(Point p, int x, int y, int width, int height)
     {
 
-        int midX = (x + width) / 2;
-        int midY = (y + height) / 2;
+        int midX = x + (width / 2);
+        int midY = y + (height / 2);
 
         // determine which quadrant the point would be under and step into it
         if (p.getX() <= midX && p.getY() <= midY)

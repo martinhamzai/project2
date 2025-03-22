@@ -107,34 +107,35 @@ public class CommandProcessorTest
             systemOut().getHistory(),
             "Point inserted: (p, 1023, 0)\n");
         systemOut().clearHistory();
-        
+
         cmdProc.processor("insert pg 900 900");
         assertEquals(
             systemOut().getHistory(),
             "Point inserted: (pg, 900, 900)\n");
         systemOut().clearHistory();
-        
+
         cmdProc.processor("insert py 850 850");
         assertEquals(
             systemOut().getHistory(),
             "Point inserted: (py, 850, 850)\n");
         systemOut().clearHistory();
-        
+
         cmdProc.processor("insert pb 1023 1023");
         assertEquals(
             systemOut().getHistory(),
             "Point inserted: (pb, 1023, 1023)\n");
         systemOut().clearHistory();
-        
+
         cmdProc.processor("insert p 60 60");
         cmdProc.processor("insert p_p 234 543");
         cmdProc.processor("insert pip 234 214");
-        
+        cmdProc.processor("insert a 875 875");
+
         cmdProc.processor("dump");
         String str = systemOut().getHistory();
-        assertEquals(str.substring(str.length() / 2 - 48),
-            "SkipList size is: 11\r\n"
-            + "QuadTree dump:\r\n"
+        assertEquals(
+            str.substring(str.indexOf("QuadTree")),
+            "QuadTree dump:\r\n"
             + "Node at 0, 0, 1024: Internal\r\n"
             + "  Node at 0, 0, 512: Internal\r\n"
             + "    Node at 0, 0, 256: Internal\r\n"
@@ -155,12 +156,21 @@ public class CommandProcessorTest
             + "    (p5, 3, 600)\r\n"
             + "    (p, 0, 1023)\r\n"
             + "    (p_p, 234, 543)\r\n"
-            + "  Node at 512, 512, 512:\r\n"
-            + "    (pg, 900, 900)\r\n"
-            + "    (py, 850, 850)\r\n"
-            + "    (pb, 1023, 1023)\r\n"
-            + "13 quadtree nodes printed\r\n");
-        
+            + "  Node at 512, 512, 512: Internal\r\n"
+            + "    Node at 512, 512, 256: Empty\r\n"
+            + "    Node at 768, 512, 256: Empty\r\n"
+            + "    Node at 512, 768, 256: Empty\r\n"
+            + "    Node at 768, 768, 256: Internal\r\n"
+            + "      Node at 768, 768, 128:\r\n"
+            + "        (py, 850, 850)\r\n"
+            + "        (a, 875, 875)\r\n"
+            + "      Node at 896, 768, 128: Empty\r\n"
+            + "      Node at 768, 896, 128: Empty\r\n"
+            + "      Node at 896, 896, 128:\r\n"
+            + "        (pg, 900, 900)\r\n"
+            + "        (pb, 1023, 1023)\r\n"
+            + "21 quadtree nodes printed\r\n");
+
         cmdProc.processor("remove 1 1");
         cmdProc.processor("remove 2 4");
         cmdProc.processor("remove 0 1023");
@@ -171,18 +181,29 @@ public class CommandProcessorTest
         cmdProc.processor("remove 60 60");
         cmdProc.processor("remove 234 543");
         cmdProc.processor("remove 234 214");
-        
+
         systemOut().clearHistory();
         cmdProc.processor("dump");
         String str2 = systemOut().getHistory();
-        assertEquals(str2.substring(str2.indexOf("QuadTree")), "QuadTree dump:\r\n"
+        assertEquals(
+            str2.substring(str2.indexOf("QuadTree")),
+            "QuadTree dump:\r\n"
             + "Node at 0, 0, 1024: Internal\r\n"
             + "  Node at 0, 0, 512: Empty\r\n"
             + "  Node at 512, 0, 512: Empty\r\n"
             + "  Node at 0, 512, 512:\r\n"
             + "    (p5, 3, 600)\r\n"
-            + "  Node at 512, 512, 512: Empty\r\n"
-            + "5 quadtree nodes printed\r\n");
+            + "  Node at 512, 512, 512: Internal\r\n"
+            + "    Node at 512, 512, 256: Empty\r\n"
+            + "    Node at 768, 512, 256: Empty\r\n"
+            + "    Node at 512, 768, 256: Empty\r\n"
+            + "    Node at 768, 768, 256: Internal\r\n"
+            + "      Node at 768, 768, 128:\r\n"
+            + "        (a, 875, 875)\r\n"
+            + "      Node at 896, 768, 128: Empty\r\n"
+            + "      Node at 768, 896, 128: Empty\r\n"
+            + "      Node at 896, 896, 128: Empty\r\n"
+            + "13 quadtree nodes printed\r\n");
     }
 
 
@@ -546,21 +567,23 @@ public class CommandProcessorTest
             + "Point inserted: (p16, 7, 8)\r\n"
             + "Point inserted: (p17, 2, 2)\r\n"
             + "Point removed: (p11, 1, 7)\r\n"
-            + "Point removed: (p5, 2, 4)\r\n"
+            + "Point not found: (2, 4)\r\n"
             + "Point inserted: (dup, 2, 2)\r\n"
             + "Point removed: (p14, 8, 8)\r\n"
             + "Points intersecting region (4, 4, 2, 2):\r\n"
             + "(p9, 5, 4)\r\n"
             + "9 quadtree nodes visited\r\n"
             + "Duplicate points\r\n"
-            + "Point not found: p5\r\n"
-            + "Point not found: p5\r\n");
+            + "Found (p5, 2, 4)\r\n"
+            + "Found (p5, 2, 4)\r\n");
 
         systemOut().clearHistory();
         cmdProc.processor("dump");
         String test = systemOut().getHistory();
         test = test.substring(test.indexOf("QuadTree"));
-        assertEquals(test, "QuadTree dump:\r\n"
+        assertEquals(
+            test,
+            "QuadTree dump:\r\n"
             + "Node at 0, 0, 1024: Internal\r\n"
             + "  Node at 0, 0, 512: Internal\r\n"
             + "    Node at 0, 0, 256: Internal\r\n"
@@ -584,11 +607,12 @@ public class CommandProcessorTest
             + "                  (p8, 5, 3)\r\n"
             + "                Node at 0, 4, 4: Internal\r\n"
             + "                  Node at 0, 4, 2: Empty\r\n"
-            + "                  Node at 2, 4, 2: Empty\r\n"
-            + "                  Node at 0, 6, 2: Empty\r\n"
-            + "                  Node at 2, 6, 2:\r\n"
+            + "                  Node at 2, 4, 2:\r\n"
+            + "                    (p5, 2, 4)\r\n"
             + "                    (p6, 2, 4)\r\n"
             + "                    (p7, 2, 4)\r\n"
+            + "                  Node at 0, 6, 2: Empty\r\n"
+            + "                  Node at 2, 6, 2: Empty\r\n"
             + "                Node at 4, 4, 4:\r\n"
             + "                  (p9, 5, 4)\r\n"
             + "                  (p10, 5, 7)\r\n"

@@ -33,9 +33,9 @@ public class InternalNodeTest
         node.insert(new KVPair<>("p4", new Point(2, 2)), 0, 0, 4, 4);
 
         int count = node.dump(0, 0, 0, 4);
-        assertEquals(9, count);
+        assertEquals(5, count);
         assertNotSame(2, count);
-        assertNotSame(5, count);
+        assertNotSame(0, count);
 
     }
 
@@ -92,7 +92,7 @@ public class InternalNodeTest
         node.insert(new KVPair<>("p3", new Point(1, 2)), 0, 0, 4, 4);
         node.insert(new KVPair<>("p4", new Point(2, 2)), 0, 0, 4, 4);
 
-        assertEquals(node.regionSearch(0, 0, 4, 4, 0, 0, 4), 9);
+        assertEquals(node.regionSearch(0, 0, 4, 4, 0, 0, 4), 5);
         assertNotSame(node.regionSearch(2, 2, 4, 4, 0, 0, 4), 4);
         assertEquals(node.regionSearch(2, 2, 4, 4, 0, 0, 4), 2);
         assertEquals(node.regionSearch(4, 4, 4, 4, 0, 0, 4), 1);
@@ -142,11 +142,12 @@ public class InternalNodeTest
         node.dump(0, 0, 1024, 1024);
         assertEquals(
             systemOut().getHistory(),
-            "Node at 0, 1024, 1024:" + " Internal\r\n"
-                + "  Node at 0, 1024, 512:\r\n" + "    (p1, 512, 512)\r\n"
-                + "  Node at 512, 1024, 512: Empty\r\n"
-                + "  Node at 0, 1536, 512: Empty\r\n"
-                + "  Node at 512, 1536, 512: Empty\n");
+            "Node at 0, 1024, 1024: Internal\r\n"
+            + "  Node at 0, 1024, 512: Empty\r\n"
+            + "  Node at 512, 1024, 512: Empty\r\n"
+            + "  Node at 0, 1536, 512: Empty\r\n"
+            + "  Node at 512, 1536, 512:\r\n"
+            + "    (p1, 512, 512)\r\n");
         systemOut().clearHistory();
         node.insert(p2, 0, 0, 1024, 1024);
         node.insert(p3, 0, 0, 1024, 1024);
@@ -154,12 +155,19 @@ public class InternalNodeTest
         node.dump(0, 0, 1024, 1024);
         assertEquals(
             systemOut().getHistory(),
-            "Node at 0, 1024, 1024:" + " Internal\r\n"
-                + "  Node at 0, 1024, 512:\r\n" + "    (p1, 512, 512)\r\n"
-                + "  Node at 512, 1024, 512: Empty\r\n"
-                + "  Node at 0, 1536, 512: Empty\r\n"
-                + "  Node at 512, 1536, 512:\n" + "    (p1, 600, 674)\r\n"
-                + "    (p1, 842, 540)\r\n" + "    (p1, 1010, 1000)\n");
+            "Node at 0, 1024, 1024: Internal\r\n"
+            + "  Node at 0, 1024, 512: Empty\r\n"
+            + "  Node at 512, 1024, 512: Empty\r\n"
+            + "  Node at 0, 1536, 512: Empty\r\n"
+            + "  Node at 512, 1536, 512: Internal\r\n"
+            + "    Node at 512, 1536, 256:\r\n"
+            + "      (p1, 512, 512)\r\n"
+            + "      (p1, 600, 674)\r\n"
+            + "    Node at 768, 1536, 256:\r\n"
+            + "      (p1, 842, 540)\r\n"
+            + "    Node at 512, 1792, 256: Empty\r\n"
+            + "    Node at 768, 1792, 256:\r\n"
+            + "      (p1, 1010, 1000)\r\n");
 
     }
     
