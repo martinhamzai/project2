@@ -107,6 +107,24 @@ public class CommandProcessorTest
             systemOut().getHistory(),
             "Point inserted: (p, 1023, 0)\n");
         systemOut().clearHistory();
+        
+        cmdProc.processor("insert pg 900 900");
+        assertEquals(
+            systemOut().getHistory(),
+            "Point inserted: (pg, 900, 900)\n");
+        systemOut().clearHistory();
+        
+        cmdProc.processor("insert py 850 850");
+        assertEquals(
+            systemOut().getHistory(),
+            "Point inserted: (py, 850, 850)\n");
+        systemOut().clearHistory();
+        
+        cmdProc.processor("insert pb 1023 1023");
+        assertEquals(
+            systemOut().getHistory(),
+            "Point inserted: (pb, 1023, 1023)\n");
+        systemOut().clearHistory();
     }
 
 
