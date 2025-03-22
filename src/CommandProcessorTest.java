@@ -639,4 +639,32 @@ public class CommandProcessorTest
                 + "41 quadtree nodes printed\r\n");
 
     }
+    
+    /**
+     * Tests the remove by name branch of the processor() method.
+     */
+    public void testRemoveAll() {
+        cmdProc.processor("insert p1 1 1");
+        cmdProc.processor("insert p2 1 3");
+        cmdProc.processor("insert p3 3 1");
+        cmdProc.processor("insert p4 2 2");
+        cmdProc.processor("insert p5 2 4");
+        
+        cmdProc.processor("dump");
+
+        
+        cmdProc.processor("remove p1");
+        cmdProc.processor("remove 1 3");
+        cmdProc.processor("remove p3");
+        cmdProc.processor("dump");
+        
+        cmdProc.processor("remove 2 2");
+        cmdProc.processor("remove 2 4");
+        systemOut().clearHistory();
+        cmdProc.processor("dump");
+        assertFuzzyEquals(
+            systemOut().getHistory(), "");
+        
+    }
+    
 }
