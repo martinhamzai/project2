@@ -111,4 +111,5 @@ public class LeafNodeTest extends TestCase {
         assertEquals(systemOut().getHistory(), 
             "Point not found: (111, 111)\n");
     }
+    
 }

@@ -108,7 +108,6 @@ public class ProblemSpecTest
         //String referenceOutput = readFile("./SyntaxTest2Out.txt");
 
         // Compare the two outputs
-        // TODO: uncomment the following line
         // once you have implemented your project
         //assertFuzzyEquals(referenceOutput, output);
     }

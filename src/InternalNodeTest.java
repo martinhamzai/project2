@@ -127,4 +127,39 @@ public class InternalNodeTest
         node.remove(p4.value(), 0, 0, 1023, 1023);
         assertNotSame(node, EmptyNode.getInstance());
     }
+
+
+    /**
+     * test insert()
+     */
+    public void testInsert()
+    {
+        KVPair<String, Point> p1 = new KVPair<>("p1", new Point(512, 512));
+        KVPair<String, Point> p2 = new KVPair<>("p1", new Point(600, 674));
+        KVPair<String, Point> p3 = new KVPair<>("p1", new Point(842, 540));
+        KVPair<String, Point> p4 = new KVPair<>("p1", new Point(1010, 1000));
+        node.insert(p1, 0, 0, 1024, 1024);
+        node.dump(0, 0, 1024, 1024);
+        assertEquals(
+            systemOut().getHistory(),
+            "Node at 0, 1024, 1024:" + " Internal\r\n"
+                + "  Node at 0, 1024, 512:\r\n" + "    (p1, 512, 512)\r\n"
+                + "  Node at 512, 1024, 512: Empty\r\n"
+                + "  Node at 0, 1536, 512: Empty\r\n"
+                + "  Node at 512, 1536, 512: Empty\n");
+        systemOut().clearHistory();
+        node.insert(p2, 0, 0, 1024, 1024);
+        node.insert(p3, 0, 0, 1024, 1024);
+        node.insert(p4, 0, 0, 1024, 1024);
+        node.dump(0, 0, 1024, 1024);
+        assertEquals(
+            systemOut().getHistory(),
+            "Node at 0, 1024, 1024:" + " Internal\r\n"
+                + "  Node at 0, 1024, 512:\r\n" + "    (p1, 512, 512)\r\n"
+                + "  Node at 512, 1024, 512: Empty\r\n"
+                + "  Node at 0, 1536, 512: Empty\r\n"
+                + "  Node at 512, 1536, 512:\n" + "    (p1, 600, 674)\r\n"
+                + "    (p1, 842, 540)\r\n" + "    (p1, 1010, 1000)\n");
+
+    }
 }
