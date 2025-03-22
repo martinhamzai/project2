@@ -175,7 +175,7 @@ public class CommandProcessorTest
         systemOut().clearHistory();
         cmdProc.processor("dump");
         String str2 = systemOut().getHistory();
-        assertEquals(str2.substring(str2.length() / 2 - 26), "QuadTree dump:\r\n"
+        assertEquals(str2.substring(str2.indexOf("QuadTree")), "QuadTree dump:\r\n"
             + "Node at 0, 0, 1024: Internal\r\n"
             + "  Node at 0, 0, 512: Empty\r\n"
             + "  Node at 512, 0, 512: Empty\r\n"
@@ -558,10 +558,10 @@ public class CommandProcessorTest
 
         systemOut().clearHistory();
         cmdProc.processor("dump");
-        int len = systemOut().getHistory().length();
-        String test = systemOut().getHistory()
-            .substring(len / 2 - len / 4);
-        assertEquals(test, "1024: Internal\r\n"
+        String test = systemOut().getHistory();
+        test = test.substring(test.indexOf("QuadTree"));
+        assertEquals(test, "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024: Internal\r\n"
             + "  Node at 0, 0, 512: Internal\r\n"
             + "    Node at 0, 0, 256: Internal\r\n"
             + "      Node at 0, 0, 128: Internal\r\n"
