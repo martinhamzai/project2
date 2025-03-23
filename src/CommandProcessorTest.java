@@ -758,11 +758,18 @@ public class CommandProcessorTest extends TestCase {
         // assertFuzzyEquals(test, "");
     }
 
+<<<<<<< HEAD
 
     /**
      * Extra testing.
      */
 
+=======
+    
+    /**
+     * test specific case of the quadtree down sizing
+     */
+>>>>>>> 4e4631b3de1d35e44a3fb9fc6ab66ce43c0a4e77
     public void testMore() {
         cmdProc.processor("insert p1 1 1");
         cmdProc.processor("insert p2 1 3");
