@@ -149,7 +149,7 @@ public class LeafNode
         for (int i = 0; i < pairs.size(); i++)
         {
             Point current = pairs.get(i).value();
-            if (current.getX() == p.getX() && current.getY() == p.getY())
+            if (current.equals(p))
             {
                 KVPair<String, Point> removed = pairs.remove(i);
                 System.out.println(
@@ -265,19 +265,26 @@ public class LeafNode
      */
     public void findDup()
     {
-
+        ArrayList<Point> unique = new ArrayList<>();
+        ArrayList<Point> dups = new ArrayList<>();
         for (int i = 0; i < pairs.size(); i++)
         {
-            for (int j = i + 1; j < pairs.size(); j++)
+            Point p = pairs.get(i).value();
+            if (unique.contains(p))
             {
-                if (pairs.get(i).value().getX() == pairs.get(j).value().getX()
-                    && pairs.get(i).value().getY() == pairs.get(j).value()
-                        .getY())
+                if (!dups.contains(p))
                 {
-                    System.out.println("" + pairs.get(i).value().toString());
-                    return;
+                    dups.insert(p);
                 }
             }
+            else
+            {
+                unique.insert(p);
+            }
+        }
+        for (int k = 0; k < dups.size(); k++)
+        {
+            System.out.println(dups.get(k).toString());
         }
     }
 

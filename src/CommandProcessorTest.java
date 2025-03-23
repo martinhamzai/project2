@@ -392,6 +392,195 @@ public class CommandProcessorTest
     {
         cmdProc.processor("duplicates");
         assertEquals(systemOut().getHistory(), "Duplicate points\n");
+        
+        cmdProc.processor("insert p1 1 1");
+        cmdProc.processor("insert p2 2 2");
+        cmdProc.processor("insert p3 3 3");
+        cmdProc.processor("insert p4 4 4");
+        cmdProc.processor("insert p5 5 5");
+        cmdProc.processor("insert p900 900 900");
+        cmdProc.processor("insert p901 901 901");
+        cmdProc.processor("insert p902 902 902");
+        cmdProc.processor("insert p601 600 1");
+        cmdProc.processor("insert p602 600 2");
+        cmdProc.processor("insert p603 600 3");
+        cmdProc.processor("insert p604 600 4");
+        cmdProc.processor("insert p301 1 600");
+        cmdProc.processor("insert p302 2 600");
+        cmdProc.processor("insert p303 3 600");
+        cmdProc.processor("insert p304 4 600");
+        cmdProc.processor("insert p11 1 1");
+        cmdProc.processor("insert p111 1 1");
+        cmdProc.processor("insert p1111 1 1");
+        cmdProc.processor("insert p902 902 902");
+        cmdProc.processor("insert p602 600 2");
+        cmdProc.processor("insert p603 600 3");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("dump");
+        String str = systemOut().getHistory();
+        str = str.substring(str.indexOf("QuadTree"));
+        assertEquals(str, "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024: Internal\r\n"
+            + "  Node at 0, 0, 512: Internal\r\n"
+            + "    Node at 0, 0, 256: Internal\r\n"
+            + "      Node at 0, 0, 128: Internal\r\n"
+            + "        Node at 0, 0, 64: Internal\r\n"
+            + "          Node at 0, 0, 32: Internal\r\n"
+            + "            Node at 0, 0, 16: Internal\r\n"
+            + "              Node at 0, 0, 8: Internal\r\n"
+            + "                Node at 0, 0, 4: Internal\r\n"
+            + "                  Node at 0, 0, 2:\r\n"
+            + "                    (p1, 1, 1)\r\n"
+            + "                    (p11, 1, 1)\r\n"
+            + "                    (p111, 1, 1)\r\n"
+            + "                    (p1111, 1, 1)\r\n"
+            + "                  Node at 2, 0, 2: Empty\r\n"
+            + "                  Node at 0, 2, 2: Empty\r\n"
+            + "                  Node at 2, 2, 2:\r\n"
+            + "                    (p2, 2, 2)\r\n"
+            + "                    (p3, 3, 3)\r\n"
+            + "                Node at 4, 0, 4: Empty\r\n"
+            + "                Node at 0, 4, 4: Empty\r\n"
+            + "                Node at 4, 4, 4:\r\n"
+            + "                  (p4, 4, 4)\r\n"
+            + "                  (p5, 5, 5)\r\n"
+            + "              Node at 8, 0, 8: Empty\r\n"
+            + "              Node at 0, 8, 8: Empty\r\n"
+            + "              Node at 8, 8, 8: Empty\r\n"
+            + "            Node at 16, 0, 16: Empty\r\n"
+            + "            Node at 0, 16, 16: Empty\r\n"
+            + "            Node at 16, 16, 16: Empty\r\n"
+            + "          Node at 32, 0, 32: Empty\r\n"
+            + "          Node at 0, 32, 32: Empty\r\n"
+            + "          Node at 32, 32, 32: Empty\r\n"
+            + "        Node at 64, 0, 64: Empty\r\n"
+            + "        Node at 0, 64, 64: Empty\r\n"
+            + "        Node at 64, 64, 64: Empty\r\n"
+            + "      Node at 128, 0, 128: Empty\r\n"
+            + "      Node at 0, 128, 128: Empty\r\n"
+            + "      Node at 128, 128, 128: Empty\r\n"
+            + "    Node at 256, 0, 256: Empty\r\n"
+            + "    Node at 0, 256, 256: Empty\r\n"
+            + "    Node at 256, 256, 256: Empty\r\n"
+            + "  Node at 512, 0, 512: Internal\r\n"
+            + "    Node at 512, 0, 256: Internal\r\n"
+            + "      Node at 512, 0, 128: Internal\r\n"
+            + "        Node at 512, 0, 64: Empty\r\n"
+            + "        Node at 576, 0, 64: Internal\r\n"
+            + "          Node at 576, 0, 32: Internal\r\n"
+            + "            Node at 576, 0, 16: Empty\r\n"
+            + "            Node at 592, 0, 16: Internal\r\n"
+            + "              Node at 592, 0, 8: Internal\r\n"
+            + "                Node at 592, 0, 4: Empty\r\n"
+            + "                Node at 596, 0, 4: Internal\r\n"
+            + "                  Node at 596, 0, 2:\r\n"
+            + "                    (p601, 600, 1)\r\n"
+            + "                  Node at 598, 0, 2: Empty\r\n"
+            + "                  Node at 596, 2, 2: Internal\r\n"
+            + "                    Node at 596, 2, 1: Internal\r\n"
+            + "                      Node at 596, 2, 0: Empty\r\n"
+            + "                      Node at 596, 2, 0:\r\n"
+            + "                        (p602, 600, 2)\r\n"
+            + "                        (p602, 600, 2)\r\n"
+            + "                      Node at 596, 2, 0: Empty\r\n"
+            + "                      Node at 596, 2, 0:\r\n"
+            + "                        (p603, 600, 3)\r\n"
+            + "                        (p603, 600, 3)\r\n"
+            + "                    Node at 597, 2, 1: Empty\r\n"
+            + "                    Node at 596, 3, 1: Empty\r\n"
+            + "                    Node at 597, 3, 1: Empty\r\n"
+            + "                  Node at 598, 2, 2: Empty\r\n"
+            + "                Node at 592, 4, 4: Empty\r\n"
+            + "                Node at 596, 4, 4:\r\n"
+            + "                  (p604, 600, 4)\r\n"
+            + "              Node at 600, 0, 8: Empty\r\n"
+            + "              Node at 592, 8, 8: Empty\r\n"
+            + "              Node at 600, 8, 8: Empty\r\n"
+            + "            Node at 576, 16, 16: Empty\r\n"
+            + "            Node at 592, 16, 16: Empty\r\n"
+            + "          Node at 608, 0, 32: Empty\r\n"
+            + "          Node at 576, 32, 32: Empty\r\n"
+            + "          Node at 608, 32, 32: Empty\r\n"
+            + "        Node at 512, 64, 64: Empty\r\n"
+            + "        Node at 576, 64, 64: Empty\r\n"
+            + "      Node at 640, 0, 128: Empty\r\n"
+            + "      Node at 512, 128, 128: Empty\r\n"
+            + "      Node at 640, 128, 128: Empty\r\n"
+            + "    Node at 768, 0, 256: Empty\r\n"
+            + "    Node at 512, 256, 256: Empty\r\n"
+            + "    Node at 768, 256, 256: Empty\r\n"
+            + "  Node at 0, 512, 512: Internal\r\n"
+            + "    Node at 0, 512, 256: Internal\r\n"
+            + "      Node at 0, 512, 128: Internal\r\n"
+            + "        Node at 0, 512, 64: Empty\r\n"
+            + "        Node at 64, 512, 64: Empty\r\n"
+            + "        Node at 0, 576, 64: Internal\r\n"
+            + "          Node at 0, 576, 32: Internal\r\n"
+            + "            Node at 0, 576, 16: Empty\r\n"
+            + "            Node at 16, 576, 16: Empty\r\n"
+            + "            Node at 0, 592, 16: Internal\r\n"
+            + "              Node at 0, 592, 8: Internal\r\n"
+            + "                Node at 0, 592, 4: Empty\r\n"
+            + "                Node at 4, 592, 4: Empty\r\n"
+            + "                Node at 0, 596, 4:\r\n"
+            + "                  (p301, 1, 600)\r\n"
+            + "                  (p302, 2, 600)\r\n"
+            + "                  (p303, 3, 600)\r\n"
+            + "                Node at 4, 596, 4:\r\n"
+            + "                  (p304, 4, 600)\r\n"
+            + "              Node at 8, 592, 8: Empty\r\n"
+            + "              Node at 0, 600, 8: Empty\r\n"
+            + "              Node at 8, 600, 8: Empty\r\n"
+            + "            Node at 16, 592, 16: Empty\r\n"
+            + "          Node at 32, 576, 32: Empty\r\n"
+            + "          Node at 0, 608, 32: Empty\r\n"
+            + "          Node at 32, 608, 32: Empty\r\n"
+            + "        Node at 64, 576, 64: Empty\r\n"
+            + "      Node at 128, 512, 128: Empty\r\n"
+            + "      Node at 0, 640, 128: Empty\r\n"
+            + "      Node at 128, 640, 128: Empty\r\n"
+            + "    Node at 256, 512, 256: Empty\r\n"
+            + "    Node at 0, 768, 256: Empty\r\n"
+            + "    Node at 256, 768, 256: Empty\r\n"
+            + "  Node at 512, 512, 512: Internal\r\n"
+            + "    Node at 512, 512, 256: Empty\r\n"
+            + "    Node at 768, 512, 256: Empty\r\n"
+            + "    Node at 512, 768, 256: Empty\r\n"
+            + "    Node at 768, 768, 256: Internal\r\n"
+            + "      Node at 768, 768, 128: Empty\r\n"
+            + "      Node at 896, 768, 128: Empty\r\n"
+            + "      Node at 768, 896, 128: Empty\r\n"
+            + "      Node at 896, 896, 128: Internal\r\n"
+            + "        Node at 896, 896, 64: Internal\r\n"
+            + "          Node at 896, 896, 32: Internal\r\n"
+            + "            Node at 896, 896, 16: Internal\r\n"
+            + "              Node at 896, 896, 8: Internal\r\n"
+            + "                Node at 896, 896, 4: Internal\r\n"
+            + "                  Node at 896, 896, 2:\r\n"
+            + "                    (p900, 900, 900)\r\n"
+            + "                  Node at 898, 896, 2: Empty\r\n"
+            + "                  Node at 896, 898, 2: Empty\r\n"
+            + "                  Node at 898, 898, 2:\r\n"
+            + "                    (p901, 901, 901)\r\n"
+            + "                    (p902, 902, 902)\r\n"
+            + "                    (p902, 902, 902)\r\n"
+            + "                Node at 900, 896, 4: Empty\r\n"
+            + "                Node at 896, 900, 4: Empty\r\n"
+            + "                Node at 900, 900, 4: Empty\r\n"
+            + "              Node at 904, 896, 8: Empty\r\n"
+            + "              Node at 896, 904, 8: Empty\r\n"
+            + "              Node at 904, 904, 8: Empty\r\n"
+            + "            Node at 912, 896, 16: Empty\r\n"
+            + "            Node at 896, 912, 16: Empty\r\n"
+            + "            Node at 912, 912, 16: Empty\r\n"
+            + "          Node at 928, 896, 32: Empty\r\n"
+            + "          Node at 896, 928, 32: Empty\r\n"
+            + "          Node at 928, 928, 32: Empty\r\n"
+            + "        Node at 960, 896, 64: Empty\r\n"
+            + "        Node at 896, 960, 64: Empty\r\n"
+            + "        Node at 960, 960, 64: Empty\r\n"
+            + "137 quadtree nodes printed\r\n");
     }
 
 
@@ -638,7 +827,27 @@ public class CommandProcessorTest
         String test = systemOut().getHistory();
         test = test.substring(test.indexOf("SkipList dump"));
         // assertFuzzyEquals(test, "");
-
+    }
+    
+    public void testMore() {
+        cmdProc.processor("insert p1 1 1");
+        cmdProc.processor("insert p2 1 3");
+        cmdProc.processor("insert p3 3 1");
+        cmdProc.processor("insert p4 2 2");
+        cmdProc.processor("insert p5 2 4");
+        cmdProc.processor("remove p1");
+        cmdProc.processor("remove 1 3");
+        cmdProc.processor("remove p3");
+        cmdProc.processor("remove 2 2");
+        systemOut().clearHistory();
+        cmdProc.processor("dump");
+        String str = systemOut().getHistory();
+        assertEquals(
+            str.substring(str.indexOf("QuadTree")),
+            "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024:\r\n"
+            + "  (p5, 2, 4)\r\n"
+            + "1 quadtree nodes printed\n");
     }
 
 }
