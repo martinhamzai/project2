@@ -117,6 +117,12 @@ public interface QuadNode
      * finds the dups
      */
     public void findDup();
+    
+    /**
+     * gets num of points
+     * @return the num of points
+     */
+    public int getCount();
 
 
 }

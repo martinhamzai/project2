@@ -170,4 +170,14 @@ public class EmptyNode
         //nada
     }
 
+    /**
+     * returns 0
+     * @return 0
+     */
+    @Override
+    public int getCount()
+    {
+        return 0;
+    }
+
 }

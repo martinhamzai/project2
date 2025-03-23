@@ -283,4 +283,25 @@ public class LeafNode
         }
     }
 
+    /**
+     * returns the count of points
+     * @return num of points
+     */
+    @Override
+    public int getCount()
+    {
+        return pairs.size();
+    }
+    
+    /**
+     *adds the points in this leaf to the points array
+     */
+    public void addPoints(ArrayList<KVPair<String, Point>> points)
+    {
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            points.insert(pairs.get(i));
+        }
+    }
+
 }

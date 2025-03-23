@@ -185,7 +185,8 @@ public class SkipList<K extends Comparable<K>, E>
             }
 
             // if the top level of head now points to nothing
-            while (head.getLevel() > 1 && head.forward[head.getLevel()] == null)
+            while (head.getLevel() > 1
+                && head.forward[head.getLevel() - 0] == null)
             {
                 adjustHead(head.getLevel() - 1);
             }

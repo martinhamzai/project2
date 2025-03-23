@@ -154,12 +154,40 @@ public class InternalNode
             se = se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
         }
 
-        
         // if all 4 quadrants are empty nodes
         if (nw instanceof EmptyNode && ne instanceof EmptyNode
             && sw instanceof EmptyNode && se instanceof EmptyNode)
         {
             return EmptyNode.getInstance();
+        }
+
+        if (this.getCount() <= 3)
+        {
+            // Create a leaf node by combining points from all quadrants
+            ArrayList<KVPair<String, Point>> points = new ArrayList<>();
+
+            if (nw instanceof LeafNode)
+            {
+                ((LeafNode)nw).addPoints(points);
+            }
+            if (ne instanceof LeafNode)
+            {
+                ((LeafNode)ne).addPoints(points);
+            }
+            if (sw instanceof LeafNode)
+            {
+                ((LeafNode)sw).addPoints(points);
+            }
+            if (se instanceof LeafNode)
+            {
+                ((LeafNode)se).addPoints(points);
+            }
+            LeafNode leaf = new LeafNode(points.get(points.size() - 1));
+            for (int i = points.size() - 2; i >= 0; i--)
+            {
+                leaf.insert(points.get(i), x, y, width, height);
+            }
+            return leaf;
         }
 
         return this;
@@ -341,15 +369,27 @@ public class InternalNode
         return !(x1 + w1 <= x2 || x2 + w2 <= x1 || y1 + h1 <= y2
             || y2 + h2 <= y1);
     }
-    
+
+
     /**
      * adds any dups in this node to the duplicates list
      */
-    public void findDup() {
+    public void findDup()
+    {
         nw.findDup();
         ne.findDup();
         sw.findDup();
         se.findDup();
     }
-    
+
+    /**
+     * returns the num of points in all children
+     * @return the num of points
+     */
+    @Override
+    public int getCount()
+    {
+        return ne.getCount() + se.getCount() + nw.getCount() + sw.getCount();
+    }
+
 }

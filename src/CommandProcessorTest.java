@@ -179,21 +179,11 @@ public class CommandProcessorTest
         String str2 = systemOut().getHistory();
         assertEquals(
             str2.substring(str2.indexOf("QuadTree")),
-            "QuadTree dump:\r\n" + "Node at 0, 0, 1024: Internal\r\n"
-                + "  Node at 0, 0, 512: Empty\r\n"
-                + "  Node at 512, 0, 512: Empty\r\n"
-                + "  Node at 0, 512, 512:\r\n" + "    (p5, 3, 600)\r\n"
-                + "  Node at 512, 512, 512: Internal\r\n"
-                + "    Node at 512, 512, 256: Empty\r\n"
-                + "    Node at 768, 512, 256: Empty\r\n"
-                + "    Node at 512, 768, 256: Empty\r\n"
-                + "    Node at 768, 768, 256: Internal\r\n"
-                + "      Node at 768, 768, 128:\r\n"
-                + "        (a, 875, 875)\r\n"
-                + "      Node at 896, 768, 128: Empty\r\n"
-                + "      Node at 768, 896, 128: Empty\r\n"
-                + "      Node at 896, 896, 128: Empty\r\n"
-                + "13 quadtree nodes printed\r\n");
+            "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024:\r\n"
+            + "  (a, 875, 875)\r\n"
+            + "  (p5, 3, 600)\r\n"
+            + "1 quadtree nodes printed\n");
     }
 
 
@@ -540,34 +530,30 @@ public class CommandProcessorTest
 
         assertEquals(
             systemOut().getHistory(),
-            "Point inserted: (p1, 1, 1)\r\n"
-            + "Point inserted: (p2, 1, 3)\r\n"
-            + "Point inserted: (p3, 3, 1)\r\n"
-            + "Point inserted: (p4, 2, 2)\r\n"
-            + "Point inserted: (p5, 2, 4)\r\n"
-            + "Point inserted: (p6, 2, 4)\r\n"
-            + "Point inserted: (p7, 2, 4)\r\n"
-            + "Point inserted: (p8, 5, 3)\r\n"
-            + "Point inserted: (p9, 5, 4)\r\n"
-            + "Point inserted: (p10, 5, 7)\r\n"
-            + "Point inserted: (p11, 1, 7)\r\n"
-            + "Point inserted: (p12, 8, 1)\r\n"
-            + "Point inserted: (p13, 9, 3)\r\n"
-            + "Point inserted: (p14, 8, 8)\r\n"
-            + "Point inserted: (p15, 9, 9)\r\n"
-            + "Point inserted: (p16, 7, 8)\r\n"
-            + "Point inserted: (p17, 2, 2)\r\n"
-            + "Point removed: (p11, 1, 7)\r\n"
-            + "Point removed: (p5, 2, 4)\r\n"
-            + "Point inserted: (dup, 2, 2)\r\n"
-            + "Point removed: (p14, 8, 8)\r\n"
-            + "Points intersecting region (4, 4, 2, 2):\r\n"
-            + "point found (p9, 5, 4)\r\n"
-            + "9 quadtree nodes visited\r\n"
-            + "Duplicate points\r\n"
-            + "2, 2\r\n"
-            + "2, 4\r\n"
-            + "Point not found: p5\r\n");
+            "Point inserted: (p1, 1, 1)\r\n" + "Point inserted: (p2, 1, 3)\r\n"
+                + "Point inserted: (p3, 3, 1)\r\n"
+                + "Point inserted: (p4, 2, 2)\r\n"
+                + "Point inserted: (p5, 2, 4)\r\n"
+                + "Point inserted: (p6, 2, 4)\r\n"
+                + "Point inserted: (p7, 2, 4)\r\n"
+                + "Point inserted: (p8, 5, 3)\r\n"
+                + "Point inserted: (p9, 5, 4)\r\n"
+                + "Point inserted: (p10, 5, 7)\r\n"
+                + "Point inserted: (p11, 1, 7)\r\n"
+                + "Point inserted: (p12, 8, 1)\r\n"
+                + "Point inserted: (p13, 9, 3)\r\n"
+                + "Point inserted: (p14, 8, 8)\r\n"
+                + "Point inserted: (p15, 9, 9)\r\n"
+                + "Point inserted: (p16, 7, 8)\r\n"
+                + "Point inserted: (p17, 2, 2)\r\n"
+                + "Point removed: (p11, 1, 7)\r\n"
+                + "Point removed: (p7, 2, 4)\r\n"
+                + "Point inserted: (dup, 2, 2)\r\n"
+                + "Point removed: (p14, 8, 8)\r\n"
+                + "Points intersecting region (4, 4, 2, 2):\r\n"
+                + "point found (p9, 5, 4)\r\n" + "9 quadtree nodes visited\r\n"
+                + "Duplicate points\r\n" + "2, 2\r\n" + "2, 4\r\n"
+                + "Found (p5, 2, 4)\r\n");
 
         systemOut().clearHistory();
         cmdProc.processor("dump");
@@ -575,92 +561,87 @@ public class CommandProcessorTest
         test = test.substring(test.indexOf("QuadTree"));
         assertEquals(
             test,
-            "QuadTree dump:\r\n" + "Node at 0, 0, 1024: Internal\r\n"
-                + "  Node at 0, 0, 512: Internal\r\n"
-                + "    Node at 0, 0, 256: Internal\r\n"
-                + "      Node at 0, 0, 128: Internal\r\n"
-                + "        Node at 0, 0, 64: Internal\r\n"
-                + "          Node at 0, 0, 32: Internal\r\n"
-                + "            Node at 0, 0, 16: Internal\r\n"
-                + "              Node at 0, 0, 8: Internal\r\n"
-                + "                Node at 0, 0, 4: Internal\r\n"
-                + "                  Node at 0, 0, 2:\r\n"
-                + "                    (p1, 1, 1)\r\n"
-                + "                  Node at 2, 0, 2:\r\n"
-                + "                    (p3, 3, 1)\r\n"
-                + "                  Node at 0, 2, 2:\r\n"
-                + "                    (p2, 1, 3)\r\n"
-                + "                  Node at 2, 2, 2:\r\n"
-                + "                    (p4, 2, 2)\r\n"
-                + "                    (p17, 2, 2)\r\n"
-                + "                    (dup, 2, 2)\r\n"
-                + "                Node at 4, 0, 4:\r\n"
-                + "                  (p8, 5, 3)\r\n"
-                + "                Node at 0, 4, 4: Internal\r\n"
-                + "                  Node at 0, 4, 2: Empty\r\n"
-                + "                  Node at 2, 4, 2:\r\n"
-                + "                    (p6, 2, 4)\r\n"
-                + "                    (p7, 2, 4)\r\n"
-                + "                  Node at 0, 6, 2: Empty\r\n"
-                + "                  Node at 2, 6, 2: Empty\r\n"
-                + "                Node at 4, 4, 4:\r\n"
-                + "                  (p9, 5, 4)\r\n"
-                + "                  (p10, 5, 7)\r\n"
-                + "              Node at 8, 0, 8:\r\n"
-                + "                (p12, 8, 1)\r\n"
-                + "                (p13, 9, 3)\r\n"
-                + "              Node at 0, 8, 8:\r\n"
-                + "                (p16, 7, 8)\r\n"
-                + "              Node at 8, 8, 8:\r\n"
-                + "                (p15, 9, 9)\r\n"
-                + "            Node at 16, 0, 16: Empty\r\n"
-                + "            Node at 0, 16, 16: Empty\r\n"
-                + "            Node at 16, 16, 16: Empty\r\n"
-                + "          Node at 32, 0, 32: Empty\r\n"
-                + "          Node at 0, 32, 32: Empty\r\n"
-                + "          Node at 32, 32, 32: Empty\r\n"
-                + "        Node at 64, 0, 64: Empty\r\n"
-                + "        Node at 0, 64, 64: Empty\r\n"
-                + "        Node at 64, 64, 64: Empty\r\n"
-                + "      Node at 128, 0, 128: Empty\r\n"
-                + "      Node at 0, 128, 128: Empty\r\n"
-                + "      Node at 128, 128, 128: Empty\r\n"
-                + "    Node at 256, 0, 256: Empty\r\n"
-                + "    Node at 0, 256, 256: Empty\r\n"
-                + "    Node at 256, 256, 256: Empty\r\n"
-                + "  Node at 512, 0, 512: Empty\r\n"
-                + "  Node at 0, 512, 512: Empty\r\n"
-                + "  Node at 512, 512, 512: Empty\r\n"
-                + "41 quadtree nodes printed\r\n");
+            "QuadTree dump:\r\n"
+            + "Node at 0, 0, 1024: Internal\r\n"
+            + "  Node at 0, 0, 512: Internal\r\n"
+            + "    Node at 0, 0, 256: Internal\r\n"
+            + "      Node at 0, 0, 128: Internal\r\n"
+            + "        Node at 0, 0, 64: Internal\r\n"
+            + "          Node at 0, 0, 32: Internal\r\n"
+            + "            Node at 0, 0, 16: Internal\r\n"
+            + "              Node at 0, 0, 8: Internal\r\n"
+            + "                Node at 0, 0, 4: Internal\r\n"
+            + "                  Node at 0, 0, 2:\r\n"
+            + "                    (p1, 1, 1)\r\n"
+            + "                  Node at 2, 0, 2:\r\n"
+            + "                    (p3, 3, 1)\r\n"
+            + "                  Node at 0, 2, 2:\r\n"
+            + "                    (p2, 1, 3)\r\n"
+            + "                  Node at 2, 2, 2:\r\n"
+            + "                    (p4, 2, 2)\r\n"
+            + "                    (p17, 2, 2)\r\n"
+            + "                    (dup, 2, 2)\r\n"
+            + "                Node at 4, 0, 4:\r\n"
+            + "                  (p8, 5, 3)\r\n"
+            + "                Node at 0, 4, 4:\r\n"
+            + "                  (p6, 2, 4)\r\n"
+            + "                  (p5, 2, 4)\r\n"
+            + "                Node at 4, 4, 4:\r\n"
+            + "                  (p9, 5, 4)\r\n"
+            + "                  (p10, 5, 7)\r\n"
+            + "              Node at 8, 0, 8:\r\n"
+            + "                (p12, 8, 1)\r\n"
+            + "                (p13, 9, 3)\r\n"
+            + "              Node at 0, 8, 8:\r\n"
+            + "                (p16, 7, 8)\r\n"
+            + "              Node at 8, 8, 8:\r\n"
+            + "                (p15, 9, 9)\r\n"
+            + "            Node at 16, 0, 16: Empty\r\n"
+            + "            Node at 0, 16, 16: Empty\r\n"
+            + "            Node at 16, 16, 16: Empty\r\n"
+            + "          Node at 32, 0, 32: Empty\r\n"
+            + "          Node at 0, 32, 32: Empty\r\n"
+            + "          Node at 32, 32, 32: Empty\r\n"
+            + "        Node at 64, 0, 64: Empty\r\n"
+            + "        Node at 0, 64, 64: Empty\r\n"
+            + "        Node at 64, 64, 64: Empty\r\n"
+            + "      Node at 128, 0, 128: Empty\r\n"
+            + "      Node at 0, 128, 128: Empty\r\n"
+            + "      Node at 128, 128, 128: Empty\r\n"
+            + "    Node at 256, 0, 256: Empty\r\n"
+            + "    Node at 0, 256, 256: Empty\r\n"
+            + "    Node at 256, 256, 256: Empty\r\n"
+            + "  Node at 512, 0, 512: Empty\r\n"
+            + "  Node at 0, 512, 512: Empty\r\n"
+            + "  Node at 512, 512, 512: Empty\r\n"
+            + "37 quadtree nodes printed\r\n");
 
     }
-    
+
+
     /**
      * Tests the remove by name branch of the processor() method.
      */
-    public void testRemoveAll() {
+    public void testRemoveAll()
+    {
         cmdProc.processor("insert p1 1 1");
         cmdProc.processor("insert p2 1 3");
         cmdProc.processor("insert p3 3 1");
         cmdProc.processor("insert p4 2 2");
         cmdProc.processor("insert p5 2 4");
-        
-        cmdProc.processor("dump");
-
-        
         cmdProc.processor("remove p1");
         cmdProc.processor("remove 1 3");
         cmdProc.processor("remove p3");
-        cmdProc.processor("dump");
-        
         cmdProc.processor("search p4");
         cmdProc.processor("remove 2 2");
         cmdProc.processor("remove 2 4");
         systemOut().clearHistory();
         cmdProc.processor("dump");
-        //assertFuzzyEquals(
-            //systemOut().getHistory(), "");
-        
+
+        String test = systemOut().getHistory();
+        test = test.substring(test.indexOf("SkipList dump"));
+        //assertFuzzyEquals(test, "");
+
     }
-    
+
 }
