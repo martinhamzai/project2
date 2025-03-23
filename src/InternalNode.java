@@ -308,15 +308,15 @@ public class InternalNode
         int midY = y + (height / 2);
 
         // determine which quadrant the point would be under and step into it
-        if (p.getX() <= midX && p.getY() <= midY)
+        if (p.getX() < midX && p.getY() < midY)
         {
             return nw.search(p, x, y, width / 2, width / 2);
         }
-        else if (p.getX() > midX && p.getY() <= midY)
+        else if (p.getX() >= midX && p.getY() < midY)
         {
             return ne.search(p, midX + 1, y, width / 2, width / 2);
         }
-        else if (p.getX() <= midX && p.getY() > midY)
+        else if (p.getX() < midX && p.getY() >= midY)
         {
             return sw.search(p, x, midY + 1, width / 2, height / 2);
         }

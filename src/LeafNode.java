@@ -277,7 +277,7 @@ public class LeafNode
                         .getY())
                 {
                     System.out.println("" + pairs.get(i).value().toString());
-                    break;
+                    return;
                 }
             }
         }
