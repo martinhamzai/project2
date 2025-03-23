@@ -129,6 +129,17 @@ public class InternalNodeTest extends TestCase {
             + "  Node at 512, 1024, 512: Empty\r\n"
             + "  Node at 0, 1536, 512: Empty\r\n"
             + "  Node at 512, 1536, 512:\r\n" + "  (p4, 511, 512)\n");
+        
+        
+        Point pt1 = new Point(1, 1);
+        Point pt2 = new Point(2, 1);
+        Point pt3 = new Point(1, 2);
+        Point pt4 = new Point(4, 4);
+        String test = "test";
+        assertFalse(pt1.equals(pt2));
+        assertFalse(pt1.equals(pt3));
+        assertFalse(pt1.equals(pt4));
+        assertFalse(pt1.equals(test));
     }
 
 
