@@ -297,15 +297,7 @@ public class LeafNode
     @Override
     public int getCount()
     {
-        ArrayList<Point> points = new ArrayList<>();
-        for (int i = 0; i < pairs.size(); i++)
-        {
-            if (!points.contains(pairs.get(i).value()))
-            {
-                points.insert(pairs.get(i).value());
-            }
-        }
-        return points.size();
+        return pairs.size();
     }
 
 

@@ -182,6 +182,7 @@ public class InternalNode
             {
                 ((LeafNode)se).addPoints(points);
             }
+            
             LeafNode leaf = new LeafNode(points.get(points.size() - 1));
             for (int i = points.size() - 2; i >= 0; i--)
             {

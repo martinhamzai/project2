@@ -42,7 +42,7 @@ public class PointsProject
         }
 
         String commandFile = args[0].trim();
-        // System.out.println("Working on file " + commandFile);
+        //System.out.println("Working on file " + commandFile);
         File theFile = new File(commandFile);
         if (!theFile.exists())
         {
@@ -63,7 +63,7 @@ public class PointsProject
                 processor.processor(line.trim());
             }
         }
-        //scanner.close();
+        scanner.close();
 
     }
 }
