@@ -5,7 +5,7 @@ import student.TestCase;
  * and that the expected behavior occurs.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-3-22
+ * @version 2025-3-23
  */
 public class ArrayListTest extends TestCase {
 

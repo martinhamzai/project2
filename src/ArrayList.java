@@ -3,7 +3,7 @@
  * for search command functionality.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-03-22
+ * @version 2025-03-23
  * @param <E>
  *            Item
  */
@@ -108,6 +108,7 @@ public class ArrayList<E>
                 "Index" + pos + "is out of bounds");
         }
         E it = listArray[pos];
+        // shift items
         for (int i = pos; i < size - 1; i++)
         {
             listArray[i] = listArray[i + 1];

@@ -3,17 +3,15 @@
  * to one instance of this class whenever an EmptyNode is needed to save space.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-03-22
+ * @version 2025-03-23
  */
-public class EmptyNode
-    implements QuadNode
-{
+public class EmptyNode implements QuadNode {
 
+    // EmptyNode object
     private static EmptyNode flyweight = null;
 
-    private EmptyNode()
-    {
-
+    private EmptyNode() {
+        // nothing
     }
 
 
@@ -23,10 +21,8 @@ public class EmptyNode
      * 
      * @return the EmptyNode
      */
-    public static EmptyNode getInstance()
-    {
-        if (flyweight == null)
-        {
+    public static EmptyNode getInstance() {
+        if (flyweight == null) {
             flyweight = new EmptyNode();
         }
         return flyweight;
@@ -49,10 +45,12 @@ public class EmptyNode
      *            curr height
      */
     @Override
-    public
-        QuadNode
-        insert(KVPair<String, Point> pair, int x, int y, int width, int height)
-    {
+    public QuadNode insert(
+        KVPair<String, Point> pair,
+        int x,
+        int y,
+        int width,
+        int height) {
         return new LeafNode(pair);
     }
 
@@ -70,10 +68,8 @@ public class EmptyNode
      *            curr width and height
      */
     @Override
-    public int dump(int depth, int x, int y, int size)
-    {
-        for (int i = 0; i < depth; i++)
-        {
+    public int dump(int depth, int x, int y, int size) {
+        for (int i = 0; i < depth; i++) {
             System.out.print("  ");
         }
         System.out.println("Node at " + x + ", " + y + ", " + size + ": Empty");
@@ -98,8 +94,7 @@ public class EmptyNode
      * @return null
      */
     @Override
-    public QuadNode remove(Point p, int x, int y, int width, int height)
-    {
+    public QuadNode remove(Point p, int x, int y, int width, int height) {
         return null;
     }
 
@@ -131,8 +126,7 @@ public class EmptyNode
         int searchHeight,
         int currX,
         int currY,
-        int size)
-    {
+        int size) {
 
         return 1;
     }
@@ -154,20 +148,21 @@ public class EmptyNode
      * @return null
      */
     @Override
-    public
-        KVPair<String, Point>
-        search(Point p, int x, int y, int width, int height)
-    {
+    public KVPair<String, Point> search(
+        Point p,
+        int x,
+        int y,
+        int width,
+        int height) {
         return null;
     }
 
 
     /**
-     * empty so no dups
+     * Empty node has no duplicates/
      */
-    public void findDup()
-    {
-        // nada
+    public void findDup() {
+        // nothing
     }
 
 
@@ -177,8 +172,7 @@ public class EmptyNode
      * @return 0
      */
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return 0;
     }
 

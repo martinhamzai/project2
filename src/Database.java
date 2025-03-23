@@ -8,7 +8,7 @@
  * version of the SkipList and/or QuadTree method after some preparation.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 03-22-2025
+ * @version 03-23-2025
  */
 public class Database
 {
@@ -41,17 +41,20 @@ public class Database
         Point p = pair.value();
         String regex = "^[A-Za-z]\\w*$";
 
+        // name
         if (!name.matches(regex))
         {
             System.out.println("Point rejected: " + pair.toString());
             return;
         }
 
+        // x 
         if (p.getX() < 0 || p.getX() >= size)
         {
             System.out.println("Point rejected: " + pair.toString());
             return;
         }
+        // y
         else if (p.getY() < 0 || p.getY() >= size)
         {
             System.out.println("Point rejected: " + pair.toString());
@@ -92,11 +95,13 @@ public class Database
      */
     public void remove(Point p)
     {
+        // x
         if (p.getX() < 0 || p.getX() >= size)
         {
             System.out.println("Point rejected: " + p.toString());
             return;
         }
+        // y
         if (p.getY() < 0 || p.getY() >= size)
         {
             System.out.println("Point rejected: " + p.toString());
