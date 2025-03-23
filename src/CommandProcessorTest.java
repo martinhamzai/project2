@@ -755,7 +755,12 @@ public class CommandProcessorTest extends TestCase {
 
         String test = systemOut().getHistory();
         test = test.substring(test.indexOf("SkipList dump"));
-        //assertFuzzyEquals(test, "");
+        assertFuzzyEquals(test, "skiplist dump\n"
+            + "node has depth 1 value null\n"
+            + "skiplist size is 0\n"
+            + "quadtree dump\n"
+            + "node at 0 0 1024 empty\n"
+            + "1 quadtree nodes printed\n");
     }
 
 
