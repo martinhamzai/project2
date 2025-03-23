@@ -1,4 +1,4 @@
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * This class is responsible for interfacing between the command processor, the
@@ -12,7 +12,8 @@ import java.util.Iterator;
  * @author Martin Hamzai and Richmond Southall
  * @version 03-22-2025
  */
-public class Database {
+public class Database
+{
 
     private SkipList<String, Point> list;
     private QuadTree qt;
@@ -22,7 +23,8 @@ public class Database {
      * The constructor for this class initializes a SkipList object with String
      * and Rectangle a its parameters and a QuadTree object.
      */
-    public Database() {
+    public Database()
+    {
         list = new SkipList<String, Point>();
         qt = new QuadTree();
     }
@@ -35,18 +37,25 @@ public class Database {
      * @param pair
      *            The KVPair to be inserted.
      */
-    public void insert(KVPair<String, Point> pair) {
+    public void insert(KVPair<String, Point> pair)
+    {
         String name = pair.key();
         Point p = pair.value();
         String regex = "^[A-Za-z]\\w*$";
 
-        if (!name.matches(regex)) {
+        if (!name.matches(regex))
+        {
             System.out.println("Point rejected: " + pair.toString());
             return;
         }
 
-        if (p.getX() < 0 || p.getX() >= size || p.getY() < 0 || p
-            .getY() >= size) {
+        if (p.getX() < 0 || p.getX() >= size)
+        {
+            System.out.println("Point rejected: " + pair.toString());
+            return;
+        }
+        else if (p.getY() < 0 || p.getY() >= size)
+        {
             System.out.println("Point rejected: " + pair.toString());
             return;
         }
@@ -63,12 +72,15 @@ public class Database {
      * @param name
      *            The key of the KVPair to remove.
      */
-    public void remove(String name) {
+    public void remove(String name)
+    {
         KVPair<String, Point> pair = list.remove(name);
-        if (pair != null) {
+        if (pair != null)
+        {
             qt.remove(pair.value());
         }
-        else {
+        else
+        {
             System.out.println("Point not removed: " + name);
         }
     }
@@ -80,13 +92,26 @@ public class Database {
      * @param p
      *            The value of the KVPair to remove.
      */
-    public void remove(Point p) {
+    public void remove(Point p)
+    {
+        if (p.getX() < 0 || p.getX() >= size)
+        {
+            System.out.println("Point rejected: " + p.toString());
+            return;
+        }
+        if (p.getY() < 0 || p.getY() >= size)
+        {
+            System.out.println("Point rejected: " + p.toString());
+            return;
+        }
         KVPair<String, Point> pair = qt.search(p);
-        if (pair != null) {
+        if (pair != null)
+        {
             qt.remove(pair.value());
             list.remove(pair.key());
         }
-        else {
+        else
+        {
             System.out.println("Point not found: (" + p.toString() + ")");
         }
     }
@@ -104,15 +129,19 @@ public class Database {
      * @param h
      *            The height of the rectangle
      */
-    public void regionsearch(int x, int y, int w, int h) {
-        if (w <= 0 || h <= 0) {
-            System.out.println("Rectangle rejected: (" + x + ", " + y + ", " + w
-                + ", " + h + ")");
+    public void regionsearch(int x, int y, int w, int h)
+    {
+        if (w <= 0 || h <= 0)
+        {
+            System.out.println(
+                "Rectangle rejected: (" + x + ", " + y + ", " + w + ", " + h
+                    + ")");
             return;
         }
 
-        System.out.println("Points intersecting region (" + x + ", " + y + ", "
-            + w + ", " + h + "):");
+        System.out.println(
+            "Points intersecting region (" + x + ", " + y + ", " + w + ", " + h
+                + "):");
         int count = qt.regionSearch(x, y, w, h);
         System.out.println(count + " quadtree nodes visited");
 
@@ -122,8 +151,10 @@ public class Database {
     /**
      * Prints out all duplicate points inside the QuadTree.
      */
-    public void duplicates() {
-        System.out.println("Duplicates");
+    public void duplicates()
+    {
+        System.out.println("Duplicate points");
+        qt.findDup();
     }
 
 
@@ -133,12 +164,15 @@ public class Database {
      * @param name
      *            The name of the point to find in the skiplist
      */
-    public void search(String name) {
+    public void search(String name)
+    {
         ArrayList<KVPair<String, Point>> pairs = list.search(name);
-        if (pairs.size() == 0) {
+        if (pairs.size() == 0)
+        {
             System.out.println("Point not found: " + name);
         }
-        for (int i = 0; i < pairs.size(); i++) {
+        for (int i = 0; i < pairs.size(); i++)
+        {
             KVPair<String, Point> pair = pairs.get(i);
             System.out.println("Found " + pair.toString());
         }
@@ -149,7 +183,8 @@ public class Database {
      * Prints out a dump of the SkipList and QuadTree containing information
      * about the nodes and points themselves.
      */
-    public void dump() {
+    public void dump()
+    {
         list.dump();
         qt.dump();
     }

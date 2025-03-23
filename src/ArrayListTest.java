@@ -25,6 +25,8 @@ public class ArrayListTest extends TestCase {
      */
     public void testInsert() {
         list.insert(1);
+        assertTrue(list.contains(1));
+        assertFalse(list.contains(2));
         assertTrue(list.size() == 1);
         assertTrue(list.get(0) == 1);
     }

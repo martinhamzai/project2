@@ -8,11 +8,14 @@ import student.TestableRandom;
  * @author {Your Name Here}
  * @version {Put Something Here}
  */
-public class ProblemSpecTest extends TestCase {
+public class ProblemSpecTest
+    extends TestCase
+{
     /**
      * Sets up the tests that follow. In general, used for initialization
      */
-    public void setUp() {
+    public void setUp()
+    {
         // Nothing here
     }
 
@@ -25,20 +28,24 @@ public class ProblemSpecTest extends TestCase {
      * @return the string
      * @throws IOException
      */
-    static String readFile(String path) throws IOException {
+    static String readFile(String path)
+        throws IOException
+    {
+        System.out.println(Paths.get(path));
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded);
     }
 
 
     /**
-     * Example 1: This method runs on a command sample IO file
-     * You will write similar test cases
-     * using different text files
+     * Example 1: This method runs on a command sample IO file You will write
+     * similar test cases using different text files
      * 
      * @throws IOException
      */
-    public void testPostedSample1() throws IOException {
+    public void testPostedSample1()
+        throws IOException
+    {
         // Setting up all the parameters
         String[] args = new String[1];
         args[0] = "SyntaxTest1.txt";
@@ -50,7 +57,7 @@ public class ProblemSpecTest extends TestCase {
         String output = systemOut().getHistory();
 
         // Expected output from file
-        String referenceOutput = readFile("SyntaxTest1Out.txt");
+        //String referenceOutput = readFile("SyntaxTest1Out.txt");
 
         // Compare the two outputs
         // TODO: uncomment the following line
@@ -60,13 +67,14 @@ public class ProblemSpecTest extends TestCase {
 
 
     /**
-     * Example 2: This method runs on a command sample IO file
-     * You will write similar test cases
-     * using different text files
+     * Example 2: This method runs on a command sample IO file You will write
+     * similar test cases using different text files
      * 
      * @throws IOException
      */
-    public void testPostedSample2() throws IOException {
+    public void testPostedSample2()
+        throws IOException
+    {
         // Setting up all the parameters
         String[] args = new String[1];
         args[0] = "SyntaxTest2.txt";
@@ -99,11 +107,34 @@ public class ProblemSpecTest extends TestCase {
         String output = systemOut().getHistory();
 
         // Expected output from file
-        String referenceOutput = readFile("SyntaxTest2Out.txt");
+        //String referenceOutput = readFile("SyntaxTest2Out.txt");
 
         // Compare the two outputs
-        // TODO: uncomment the following line
         // once you have implemented your project
         //assertFuzzyEquals(referenceOutput, output);
     }
+    
+    /**
+     * Example 3: Checks if invalid file or no file given
+     * 
+     * @throws IOException
+     */
+    public void testPostedSample3()
+        throws IOException
+    {
+        String[] args = new String[2];
+        args[0] = "";
+        PointsProject.main(args);
+        assertEquals(systemOut().getHistory(),
+            "Usage: PointsProject <command-file>\n");
+        systemOut().clearHistory();
+        
+        String[] args2 = new String[1];
+        args2[0] = "test";
+        PointsProject.main(args2);
+        assertEquals(systemOut().getHistory(),
+            "There is no such input file as |test|\n");
+        
+    }
+    
 }
