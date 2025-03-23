@@ -53,6 +53,7 @@ public class Point {
      *      the point being compared
      * @return true if they are equal
      */
+    @Override
     public boolean equals(Object p)
     {
         if (this == p)
@@ -63,7 +64,7 @@ public class Point {
         {
             return false;
         }
-        Point other = (Point)p;
+        Point other = (Point) p;
 
         return this.getX() == other.getX() && this.getY() == other.getY();
 

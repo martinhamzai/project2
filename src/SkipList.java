@@ -154,17 +154,14 @@ public class SkipList<K extends Comparable<K>, E>
      */
 
     @SuppressWarnings("unchecked")
-    public KVPair<K, E> remove(K key)
-    {
+    public KVPair<K, E> remove(K key) {
         // locate the correct position for the new node
-        SkipNode[] update = (SkipNode[])Array
-            .newInstance(SkipList.SkipNode.class, head.getLevel() + 1);
+        SkipNode[] update = (SkipNode[])Array.newInstance(
+            SkipList.SkipNode.class, head.getLevel() + 1);
         SkipNode x = head;
-        for (int i = head.getLevel(); i >= 0; i--)
-        { // Find remove position
-            while ((x.forward[i] != null)
-                && (x.forward[i].element().key().compareTo(key) < 0))
-            {
+        for (int i = head.getLevel(); i >= 0; i--) { // Find remove position
+            while ((x.forward[i] != null) && (x.forward[i].element().key()
+                .compareTo(key) < 0)) {
                 x = x.forward[i];
             }
             update[i] = x; // Track end at level i
@@ -172,22 +169,18 @@ public class SkipList<K extends Comparable<K>, E>
         // move to node to be removed
         x = x.forward[0];
 
-        if (x != null && x.element().key().compareTo(key) == 0)
-        {
+        if (x != null && x.element().key().compareTo(key) == 0) {
             KVPair<K, E> item = x.element();
-            for (int i = 0; i < head.getLevel(); i++)
-            {
-                if (update[i].forward[i] != x)
-                {
+            for (int i = 0; i < head.getLevel(); i++) {
+                if (update[i].forward[i] != x) {
                     break;
                 }
                 update[i].forward[i] = x.forward[i];
             }
 
             // if the top level of head now points to nothing
-            while (head.getLevel() > 1
-                && head.forward[head.getLevel() - 0] == null)
-            {
+            while (head.getLevel() > 1 && head.forward[head
+                .getLevel()] == null) {
                 adjustHead(head.getLevel() - 1);
             }
 
@@ -196,6 +189,8 @@ public class SkipList<K extends Comparable<K>, E>
         }
         return null;
     }
+
+
 
 
     /**

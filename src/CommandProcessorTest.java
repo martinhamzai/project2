@@ -156,11 +156,8 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("dump");
         String str2 = systemOut().getHistory();
         assertEquals(str2.substring(str2.indexOf("QuadTree")),
-            "QuadTree dump:\n"
-            + "Node at 0, 0, 1024:\n"
-            + "(a, 875, 875)\n"
-            + "(p5, 3, 600)\n"
-            + "1 quadtree nodes printed\n");
+            "QuadTree dump:\n" + "Node at 0, 0, 1024:\n" + "(a, 875, 875)\n"
+                + "(p5, 3, 600)\n" + "1 quadtree nodes printed\n");
     }
 
 
@@ -279,11 +276,9 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("regionsearch -5 -5 20 20");
         assertEquals(systemOut().getHistory(),
             "Points intersecting region (-5, -5, 20, 20):\n"
-            + "Point found: (p1, 1, 1)\n"
-            + "Point found: (p2, 2, 2)\n"
-            + "Point found: (p3, 3, 3)\n"
-            + "Point found: (p4, 4, 4)\n"
-            + "15 quadtree nodes visited\n");
+                + "Point found: (p1, 1, 1)\n" + "Point found: (p2, 2, 2)\n"
+                + "Point found: (p3, 3, 3)\n" + "Point found: (p4, 4, 4)\n"
+                + "15 quadtree nodes visited\n");
 
         systemOut().clearHistory();
         cmdProc.processor("regionsearch 50 50 400 400");
@@ -295,14 +290,14 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("regionsearch 890 890 12 12");
         assertEquals(systemOut().getHistory(),
             "Points intersecting region (890, 890, 12, 12):\n"
-            + "Point found: (p901, 901, 901)\n"
-            + "2 quadtree nodes visited\n");
+                + "Point found: (p901, 901, 901)\n"
+                + "2 quadtree nodes visited\n");
 
         systemOut().clearHistory();
         cmdProc.processor("regionsearch 1000 1000 100 100");
         assertEquals(systemOut().getHistory(),
             "Points intersecting region (1000, 1000, 100, 100):\n"
-            + "2 quadtree nodes visited\n");
+                + "2 quadtree nodes visited\n");
     }
 
 
@@ -345,8 +340,7 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("regionsearch 2 2 1 1");
         assertEquals(systemOut().getHistory(),
             "Points intersecting region (2, 2, 1, 1):\n"
-            + "Point found: (poi, 2, 2)\n"
-            + "10 quadtree nodes visited\n");
+                + "Point found: (poi, 2, 2)\n" + "10 quadtree nodes visited\n");
     }
 
 
@@ -384,8 +378,7 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("dump");
         String str = systemOut().getHistory();
         str = str.substring(str.indexOf("QuadTree"));
-        assertEquals(str, "QuadTree dump:\n"
-            + "Node at 0, 0, 1024: Internal\n"
+        assertEquals(str, "QuadTree dump:\n" + "Node at 0, 0, 1024: Internal\n"
             + "  Node at 0, 0, 512: Internal\n"
             + "    Node at 0, 0, 256: Internal\n"
             + "      Node at 0, 0, 128: Internal\n"
@@ -407,8 +400,7 @@ public class CommandProcessorTest extends TestCase {
             + "                Node at 4, 0, 4: Empty\n"
             + "                Node at 0, 4, 4: Empty\n"
             + "                Node at 4, 4, 4:\n"
-            + "                (p4, 4, 4)\n"
-            + "                (p5, 5, 5)\n"
+            + "                (p4, 4, 4)\n" + "                (p5, 5, 5)\n"
             + "              Node at 8, 0, 8: Empty\n"
             + "              Node at 0, 8, 8: Empty\n"
             + "              Node at 8, 8, 8: Empty\n"
@@ -435,30 +427,26 @@ public class CommandProcessorTest extends TestCase {
             + "          Node at 576, 0, 32: Internal\n"
             + "            Node at 576, 0, 16: Empty\n"
             + "            Node at 592, 0, 16: Internal\n"
-            + "              Node at 592, 0, 8: Internal\n"
-            + "                Node at 592, 0, 4: Empty\n"
-            + "                Node at 596, 0, 4: Internal\n"
-            + "                  Node at 596, 0, 2:\n"
+            + "              Node at 592, 0, 8: Empty\n"
+            + "              Node at 600, 0, 8: Internal\n"
+            + "                Node at 600, 0, 4: Internal\n"
+            + "                  Node at 600, 0, 2:\n"
             + "                  (p601, 600, 1)\n"
-            + "                  Node at 598, 0, 2: Empty\n"
-            + "                  Node at 596, 2, 2: Internal\n"
-            + "                    Node at 596, 2, 1: Internal\n"
-            + "                      Node at 596, 2, 0: Empty\n"
-            + "                      Node at 596, 2, 0:\n"
-            + "                      (p602, 600, 2)\n"
-            + "                      (p602, 600, 2)\n"
-            + "                      Node at 596, 2, 0: Empty\n"
-            + "                      Node at 596, 2, 0:\n"
-            + "                      (p603, 600, 3)\n"
-            + "                      (p603, 600, 3)\n"
-            + "                    Node at 597, 2, 1: Empty\n"
-            + "                    Node at 596, 3, 1: Empty\n"
-            + "                    Node at 597, 3, 1: Empty\n"
-            + "                  Node at 598, 2, 2: Empty\n"
-            + "                Node at 592, 4, 4: Empty\n"
-            + "                Node at 596, 4, 4:\n"
+            + "                  Node at 602, 0, 2: Empty\n"
+            + "                  Node at 600, 2, 2: Internal\n"
+            + "                    Node at 600, 2, 1:\n"
+            + "                    (p602, 600, 2)\n"
+            + "                    (p602, 600, 2)\n"
+            + "                    Node at 601, 2, 1: Empty\n"
+            + "                    Node at 600, 3, 1:\n"
+            + "                    (p603, 600, 3)\n"
+            + "                    (p603, 600, 3)\n"
+            + "                    Node at 601, 3, 1: Empty\n"
+            + "                  Node at 602, 2, 2: Empty\n"
+            + "                Node at 604, 0, 4: Empty\n"
+            + "                Node at 600, 4, 4:\n"
             + "                (p604, 600, 4)\n"
-            + "              Node at 600, 0, 8: Empty\n"
+            + "                Node at 604, 4, 4: Empty\n"
             + "              Node at 592, 8, 8: Empty\n"
             + "              Node at 600, 8, 8: Empty\n"
             + "            Node at 576, 16, 16: Empty\n"
@@ -484,17 +472,17 @@ public class CommandProcessorTest extends TestCase {
             + "            Node at 0, 576, 16: Empty\n"
             + "            Node at 16, 576, 16: Empty\n"
             + "            Node at 0, 592, 16: Internal\n"
-            + "              Node at 0, 592, 8: Internal\n"
-            + "                Node at 0, 592, 4: Empty\n"
-            + "                Node at 4, 592, 4: Empty\n"
-            + "                Node at 0, 596, 4:\n"
+            + "              Node at 0, 592, 8: Empty\n"
+            + "              Node at 8, 592, 8: Empty\n"
+            + "              Node at 0, 600, 8: Internal\n"
+            + "                Node at 0, 600, 4:\n"
             + "                (p301, 1, 600)\n"
             + "                (p302, 2, 600)\n"
             + "                (p303, 3, 600)\n"
-            + "                Node at 4, 596, 4:\n"
+            + "                Node at 4, 600, 4:\n"
             + "                (p304, 4, 600)\n"
-            + "              Node at 8, 592, 8: Empty\n"
-            + "              Node at 0, 600, 8: Empty\n"
+            + "                Node at 0, 604, 4: Empty\n"
+            + "                Node at 4, 604, 4: Empty\n"
             + "              Node at 8, 600, 8: Empty\n"
             + "            Node at 16, 592, 16: Empty\n"
             + "          Node at 32, 576, 32: Empty\n"
@@ -520,18 +508,18 @@ public class CommandProcessorTest extends TestCase {
             + "          Node at 896, 896, 32: Internal\n"
             + "            Node at 896, 896, 16: Internal\n"
             + "              Node at 896, 896, 8: Internal\n"
-            + "                Node at 896, 896, 4: Internal\n"
-            + "                  Node at 896, 896, 2:\n"
-            + "                  (p900, 900, 900)\n"
-            + "                  Node at 898, 896, 2: Empty\n"
-            + "                  Node at 896, 898, 2: Empty\n"
-            + "                  Node at 898, 898, 2:\n"
-            + "                  (p901, 901, 901)\n"
-            + "                  (p902, 902, 902)\n"
-            + "                  (p902, 902, 902)\n"
+            + "                Node at 896, 896, 4: Empty\n"
             + "                Node at 900, 896, 4: Empty\n"
             + "                Node at 896, 900, 4: Empty\n"
-            + "                Node at 900, 900, 4: Empty\n"
+            + "                Node at 900, 900, 4: Internal\n"
+            + "                  Node at 900, 900, 2:\n"
+            + "                  (p900, 900, 900)\n"
+            + "                  (p901, 901, 901)\n"
+            + "                  Node at 902, 900, 2: Empty\n"
+            + "                  Node at 900, 902, 2: Empty\n"
+            + "                  Node at 902, 902, 2:\n"
+            + "                  (p902, 902, 902)\n"
+            + "                  (p902, 902, 902)\n"
             + "              Node at 904, 896, 8: Empty\n"
             + "              Node at 896, 904, 8: Empty\n"
             + "              Node at 904, 904, 8: Empty\n"
@@ -544,7 +532,7 @@ public class CommandProcessorTest extends TestCase {
             + "        Node at 960, 896, 64: Empty\n"
             + "        Node at 896, 960, 64: Empty\n"
             + "        Node at 960, 960, 64: Empty\n"
-            + "137 quadtree nodes printed\n");
+            + "133 quadtree nodes printed\n");
     }
 
 
@@ -695,8 +683,7 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("dump");
         String test = systemOut().getHistory();
         test = test.substring(test.indexOf("QuadTree"));
-        assertEquals(test, "QuadTree dump:\n"
-            + "Node at 0, 0, 1024: Internal\n"
+        assertEquals(test, "QuadTree dump:\n" + "Node at 0, 0, 1024: Internal\n"
             + "  Node at 0, 0, 512: Internal\n"
             + "    Node at 0, 0, 256: Internal\n"
             + "      Node at 0, 0, 128: Internal\n"
@@ -718,17 +705,12 @@ public class CommandProcessorTest extends TestCase {
             + "                Node at 4, 0, 4:\n"
             + "                (p8, 5, 3)\n"
             + "                Node at 0, 4, 4:\n"
-            + "                (p6, 2, 4)\n"
-            + "                (p5, 2, 4)\n"
+            + "                (p6, 2, 4)\n" + "                (p5, 2, 4)\n"
             + "                Node at 4, 4, 4:\n"
-            + "                (p9, 5, 4)\n"
-            + "                (p10, 5, 7)\n"
-            + "              Node at 8, 0, 8:\n"
-            + "              (p12, 8, 1)\n"
-            + "              (p13, 9, 3)\n"
-            + "              Node at 0, 8, 8:\n"
-            + "              (p16, 7, 8)\n"
-            + "              Node at 8, 8, 8:\n"
+            + "                (p9, 5, 4)\n" + "                (p10, 5, 7)\n"
+            + "              Node at 8, 0, 8:\n" + "              (p12, 8, 1)\n"
+            + "              (p13, 9, 3)\n" + "              Node at 0, 8, 8:\n"
+            + "              (p16, 7, 8)\n" + "              Node at 8, 8, 8:\n"
             + "              (p15, 9, 9)\n"
             + "            Node at 16, 0, 16: Empty\n"
             + "            Node at 0, 16, 16: Empty\n"
@@ -773,9 +755,13 @@ public class CommandProcessorTest extends TestCase {
 
         String test = systemOut().getHistory();
         test = test.substring(test.indexOf("SkipList dump"));
-        //assertFuzzyEquals(test, "");
+        // assertFuzzyEquals(test, "");
     }
 
+
+    /**
+     * Extra testing.
+     */
 
     public void testMore() {
         cmdProc.processor("insert p1 1 1");
@@ -791,8 +777,8 @@ public class CommandProcessorTest extends TestCase {
         cmdProc.processor("dump");
         String str = systemOut().getHistory();
         assertEquals(str.substring(str.indexOf("QuadTree")),
-            "QuadTree dump:\r\n" + "Node at 0, 0, 1024:\r\n"
-                + "(p5, 2, 4)\r\n" + "1 quadtree nodes printed\n");
+            "QuadTree dump:\r\n" + "Node at 0, 0, 1024:\r\n" + "(p5, 2, 4)\r\n"
+                + "1 quadtree nodes printed\n");
     }
 
 }

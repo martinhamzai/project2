@@ -107,8 +107,8 @@ public class Database
         KVPair<String, Point> pair = qt.search(p);
         if (pair != null)
         {
-            qt.remove(pair.value());
             list.remove(pair.key());
+            qt.remove(pair.value());
         }
         else
         {

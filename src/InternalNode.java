@@ -62,15 +62,15 @@ public class InternalNode
         }
         else if (p.getX() >= midX && p.getY() < midY)
         {
-            ne = ne.insert(pair, midX + 1, y, width / 2, height / 2);
+            ne = ne.insert(pair, midX , y, width / 2, height / 2);
         }
         else if (p.getX() < midX && p.getY() >= midY)
         {
-            sw = sw.insert(pair, x, midY + 1, width / 2, height / 2);
+            sw = sw.insert(pair, x, midY, width / 2, height / 2);
         }
         else
         {
-            se = se.insert(pair, midX + 1, midY + 1, width / 2, height / 2);
+            se = se.insert(pair, midX, midY, width / 2, height / 2);
         }
 
         return this;
@@ -143,15 +143,15 @@ public class InternalNode
         }
         else if (p.getX() >= midX && p.getY() < midY)
         {
-            ne = ne.remove(p, midX + 1, y, width / 2, height / 2);
+            ne = ne.remove(p, midX, y, width / 2, height / 2);
         }
         else if (p.getX() < midX && p.getY() >= midY)
         {
-            sw = sw.remove(p, x, midY + 1, width / 2, height / 2);
+            sw = sw.remove(p, x, midY, width / 2, height / 2);
         }
         else
         {
-            se = se.remove(p, midX + 1, midY + 1, width / 2, height / 2);
+            se = se.remove(p, midX, midY, width / 2, height / 2);
         }
 
         // if all 4 quadrants are empty nodes
@@ -342,15 +342,15 @@ public class InternalNode
         }
         else if (p.getX() >= midX && p.getY() < midY)
         {
-            return ne.search(p, midX + 1, y, width / 2, width / 2);
+            return ne.search(p, midX, y, width / 2, width / 2);
         }
         else if (p.getX() < midX && p.getY() >= midY)
         {
-            return sw.search(p, x, midY + 1, width / 2, height / 2);
+            return sw.search(p, x, midY, width / 2, height / 2);
         }
         else
         {
-            return se.search(p, midX + 1, midY + 1, width / 2, height / 2);
+            return se.search(p, midX, midY, width / 2, height / 2);
         }
     }
 
