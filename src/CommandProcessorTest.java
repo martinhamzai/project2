@@ -165,6 +165,9 @@ public class CommandProcessorTest extends TestCase {
      * Tests the remove by name branch of the processor() method.
      */
     public void testRemoveByName() {
+        cmdProc.processor("remove a 1 1 1");
+        assertEquals(systemOut().getHistory(), "");
+        
         cmdProc.processor("insert p 1 1");
 
         systemOut().clearHistory();
@@ -228,6 +231,15 @@ public class CommandProcessorTest extends TestCase {
         systemOut().clearHistory();
         cmdProc.processor("remove -1023 -1");
         assertEquals(systemOut().getHistory(), "Point rejected: -1023, -1\n");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("remove 1025 1");
+        assertEquals(systemOut().getHistory(), "Point rejected: 1025, 1\n");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("remove 1 1025");
+        assertEquals(systemOut().getHistory(), "Point rejected: 1, 1025\n");
+        
 
     }
 
@@ -787,6 +799,7 @@ public class CommandProcessorTest extends TestCase {
         systemOut().clearHistory();
         cmdProc.processor("a");
         assertEquals(systemOut().getHistory(), "");
+        
         
     }
 

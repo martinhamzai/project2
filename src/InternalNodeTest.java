@@ -130,7 +130,14 @@ public class InternalNodeTest extends TestCase {
             + "  Node at 0, 1536, 512: Empty\r\n"
             + "  Node at 512, 1536, 512:\r\n" + "  (p4, 511, 512)\n");
         
+        QuadNode node2 = new InternalNode();
+        node2.insert(p5, 0, 0, 0, 0);
+        QuadNode node3 = node2.remove(p5.value(), 0, 0, 1023, 1023);
+        assertTrue(node3 instanceof EmptyNode);
+       
         
+        
+        // test points
         Point pt1 = new Point(1, 1);
         Point pt2 = new Point(2, 1);
         Point pt3 = new Point(1, 2);
