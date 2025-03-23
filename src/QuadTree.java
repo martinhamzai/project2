@@ -24,12 +24,10 @@ public class QuadTree
      * 
      * @param pair
      *            the KVPair to insert
-     * @return true
      */
-    public boolean insert(KVPair<String, Point> pair)
+    public void insert(KVPair<String, Point> pair)
     {
         root = root.insert(pair, 0, 0, size, size);
-        return true;
     }
 
 
