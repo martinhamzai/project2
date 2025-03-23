@@ -153,7 +153,6 @@ public class Database
      */
     public void duplicates()
     {
-        Set<Point> unique = new HashSet<>();
         System.out.println("Duplicate points");
         qt.findDup();
     }
