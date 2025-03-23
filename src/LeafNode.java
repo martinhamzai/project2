@@ -281,8 +281,10 @@ public class LeafNode
         }
     }
 
+
     /**
      * returns the count of points
+     * 
      * @return num of points
      */
     @Override
@@ -298,11 +300,13 @@ public class LeafNode
         }
         return points.size();
     }
-    
+
+
     /**
-     *adds the points in this leaf to the points array
-     *@param points
-     *      the array of points
+     * adds the points in this leaf to the points array
+     * 
+     * @param points
+     *            the array of points
      */
     public void addPoints(ArrayList<KVPair<String, Point>> points)
     {

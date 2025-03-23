@@ -162,16 +162,20 @@ public class EmptyNode
     {
         return null;
     }
-    
+
+
     /**
      * empty so no dups
      */
-    public void findDup() {
-        //nada
+    public void findDup()
+    {
+        // nada
     }
+
 
     /**
      * returns 0
+     * 
      * @return 0
      */
     @Override
