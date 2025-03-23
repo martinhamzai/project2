@@ -8,7 +8,7 @@ import student.TestableRandom;
  * class which the SkipList will make an array of to store data.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-02-25
+ * @version 3-23-2025
  * @param <K>
  *            Key
  * @param <E>
@@ -356,7 +356,6 @@ public class SkipList<K extends Comparable<K>, E>
         {
             return current.getLevel();
         }
-
     }
 
     /**
@@ -367,5 +366,4 @@ public class SkipList<K extends Comparable<K>, E>
     {
         return new SkipListIterator();
     }
-
 }

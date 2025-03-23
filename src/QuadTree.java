@@ -2,7 +2,7 @@
  * QuadTree object that utilizes various types of QuadNodes to store KVPairs.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 03-22-2025
+ * @version 03-23-2025
  */
 public class QuadTree
 {
@@ -93,5 +93,4 @@ public class QuadTree
     {
         root.findDup();
     }
-
 }

@@ -3,9 +3,10 @@
  * Point class.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-03-22
+ * @version 3-23-2025
  */
-public class Point {
+public class Point
+{
 
     private int x;
     private int y;
@@ -14,11 +15,12 @@ public class Point {
      * Creates a new point.
      * 
      * @param x
-     *       x coordinate
+     *            x coordinate
      * @param y
-     *       y coordinate
+     *            y coordinate
      */
-    public Point(int x, int y) {
+    public Point(int x, int y)
+    {
         this.x = x;
         this.y = y;
     }
@@ -27,14 +29,17 @@ public class Point {
     /**
      * @return the x coordinate
      */
-    public int getX() {
+    public int getX()
+    {
         return x;
     }
+
 
     /**
      * @return the y coordinate
      */
-    public int getY() {
+    public int getY()
+    {
         return y;
     }
 
@@ -43,14 +48,17 @@ public class Point {
      * @return the string representation of the point.
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return x + ", " + y;
     }
-    
+
+
     /**
      * Returns true if the points are equal
+     * 
      * @param p
-     *      the point being compared
+     *            the point being compared
      * @return true if they are equal
      */
     @Override
@@ -64,10 +72,8 @@ public class Point {
         {
             return false;
         }
-        Point other = (Point) p;
+        Point other = (Point)p;
 
         return this.getX() == other.getX() && this.getY() == other.getY();
-
     }
-    
 }

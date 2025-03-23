@@ -5,8 +5,11 @@ import student.TestCase;
 import student.TestableRandom;
 
 /**
- * @author {Your Name Here}
- * @version {Put Something Here}
+ * Helps test the code on a larger scale by referncing the instructor given
+ * input and output files to the output of the program.
+ * 
+ * @author Richmond Southall & Martin hamzai
+ * @version 3-23-2025
  */
 public class ProblemSpecTest
     extends TestCase
@@ -110,7 +113,8 @@ public class ProblemSpecTest
         // once you have implemented your project
         assertEquals(referenceOutput, output);
     }
-    
+
+
     /**
      * Example 3: Checks if invalid file or no file given
      * 
@@ -122,16 +126,16 @@ public class ProblemSpecTest
         String[] args = new String[2];
         args[0] = "";
         PointsProject.main(args);
-        assertEquals(systemOut().getHistory(),
+        assertEquals(
+            systemOut().getHistory(),
             "Usage: PointsProject <command-file>\n");
         systemOut().clearHistory();
-        
+
         String[] args2 = new String[1];
         args2[0] = "test";
         PointsProject.main(args2);
-        assertEquals(systemOut().getHistory(),
+        assertEquals(
+            systemOut().getHistory(),
             "There is no such input file as |test|\n");
-        
     }
-    
 }

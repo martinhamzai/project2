@@ -4,7 +4,7 @@
  * store infinitely many. LeafNodes store the points in an ArrayList.
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 03-22-2025
+ * @version 03-23-2025
  */
 public class LeafNode
     implements QuadNode
@@ -26,7 +26,8 @@ public class LeafNode
 
 
     /**
-     * Insert a new pair into the LeafNode.
+     * Insert a new pair into the LeafNode, uses private method same() which
+     * checks if all of the points in the lead are the same point
      * 
      * @param insertPair
      *            pair to insert
@@ -209,7 +210,6 @@ public class LeafNode
                 System.out.println("Point found: " + pairs.get(i).toString());
             }
         }
-
         return count;
     }
 
@@ -248,6 +248,7 @@ public class LeafNode
 
 
     /**
+     * Gets the pairs stored in this leaf node
      * @return the list of pairs in the LeafNode.
      */
     public ArrayList<KVPair<String, Point>> getPairs()

@@ -9,7 +9,7 @@ import student.TestableRandom;
  * This class tests the methods of SkipList class
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 2025-02-25
+ * @version 3-23-2025
  */
 
 public class SkipListTest
@@ -299,7 +299,5 @@ public class SkipListTest
                 + " Value (int1, 1)\nSkipList size is" + ": 1\n",
             systemOut().getHistory());
         systemOut().clearHistory();
-
     }
-
 }

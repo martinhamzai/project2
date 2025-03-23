@@ -5,7 +5,7 @@ import java.util.Set;
  * nodes in the QuadTree
  * 
  * @author Martin Hamzai and Richmond Southall
- * @version 03-22-2025
+ * @version 03-23-2025
  */
 public interface QuadNode
 {
@@ -117,12 +117,13 @@ public interface QuadNode
      * finds the dups
      */
     public void findDup();
-    
+
+
     /**
      * gets num of points
+     * 
      * @return the num of points
      */
     public int getCount();
-
 
 }
