@@ -28,7 +28,7 @@ public class EmptyNodeTest extends TestCase {
         EmptyNode second = EmptyNode.getInstance();
         assertNotNull(first);
         assertNotNull(second);
-        assertSame(first, second); // ensures the singleton is reused
+        assertSame(first, second); 
     }
     /**
      * Tests the insert method.
@@ -44,6 +44,9 @@ public class EmptyNodeTest extends TestCase {
         int res = en.dump(1, 0, 0, 0);
         assertTrue(res == 1);
         assertEquals(systemOut().getHistory(), "  Node at 0, 0, 0: Empty\n");
+        systemOut().clearHistory();
+        res = en.dump(-1, 0, 0, 0);
+        assertEquals(systemOut().getHistory(), "Node at 0, 0, 0: Empty\n");
     }
     
     /**

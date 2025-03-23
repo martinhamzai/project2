@@ -783,6 +783,11 @@ public class CommandProcessorTest extends TestCase {
         assertEquals(str.substring(str.indexOf("QuadTree")),
             "QuadTree dump:\r\n" + "Node at 0, 0, 1024:\r\n" + "(p5, 2, 4)\r\n"
                 + "1 quadtree nodes printed\n");
+        
+        systemOut().clearHistory();
+        cmdProc.processor("a");
+        assertEquals(systemOut().getHistory(), "");
+        
     }
 
 }

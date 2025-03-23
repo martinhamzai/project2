@@ -1,5 +1,3 @@
-import java.util.Set;
-
 /**
  * EmptyNode class that implements the QuadNode interface. The QuadTree points
  * to one instance of this class whenever an EmptyNode is needed to save space.
