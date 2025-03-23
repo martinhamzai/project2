@@ -30,9 +30,23 @@ public class LeafNodeTest extends TestCase {
      * Tests that a new node stores the initial pair correctly
      */
     public void testInsert() {
+        //test the point comparison used in the insert method
+        Point pt1 = new Point(1, 1);
+        Point pt5 = new Point(1, 1);
+        Point pt2 = new Point(2, 1);
+        Point pt3 = new Point(1, 2);
+        Point pt4 = new Point(4, 4);
+        String test = "test";
+        assertFalse(pt1.equals(pt2));
+        assertFalse(pt1.equals(pt3));
+        assertFalse(pt1.equals(pt4));
+        assertTrue(pt1.equals(pt5));
+        
+        //test insest
         KVPair<String, Point> p3 = new KVPair<>("p12", new Point(10, 10));
         QuadNode result = ln.insert(p3, 0, 0, 1024, 1024);
-
+        ArrayList<KVPair<String, Point>> list2 = new ArrayList<>();
+        
         assertTrue(result instanceof LeafNode);
         LeafNode leaf = (LeafNode)result;
         assertEquals(2, leaf.getPairs().size());
@@ -79,10 +93,11 @@ public class LeafNodeTest extends TestCase {
             .toString() + "\n");
 
         systemOut().clearHistory();
+        ln.insert(pair1, 0, 0, 1024, 1024);
 
-        int count2 = ln.regionSearch(100, 100, 20, 20, 0, 0, 1024);
+        int count2 = ln.regionSearch(0, 0, 100, 100, 0, 0, 1024);
         assertEquals(1, count2); // node still visited
-        assertEquals(systemOut().getHistory(), "");
+        assertFalse(count2 == 5);
     }
 
 

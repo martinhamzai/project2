@@ -75,15 +75,11 @@ public class LeafNode
 
     private boolean same(ArrayList<KVPair<String, Point>> list)
     {
-        if (list.size() == 0)
-        {
-            return true;
-        }
         Point ref = list.get(0).value();
         for (int i = 1; i < list.size(); i++)
         {
             Point p = list.get(i).value();
-            if (p.getX() != ref.getX() || p.getY() != ref.getY())
+            if (!p.equals(ref))
             {
                 return false;
             }
