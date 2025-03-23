@@ -13,6 +13,7 @@ public class KVPairTest extends TestCase {
     // KVPair objects to be used for the tests
     private KVPair<String, Integer> pair;
     private KVPair<String, Integer> pair2;
+    private KVPair<String, Integer> pair3;
 
     /**
      * Initializes a KVPair object to be used for the tests.
@@ -20,6 +21,7 @@ public class KVPairTest extends TestCase {
     public void setUp() {
         pair = new KVPair<>("key", 123);
         pair2 = new KVPair<>("key", 123);
+        pair3 = new KVPair<>("test", 45);
     }
     
     /**
@@ -28,6 +30,8 @@ public class KVPairTest extends TestCase {
     public void testCompareTo() {
         assertTrue(pair.compareTo(pair2) == 0);
         assertTrue(pair.compareTo(pair2.key()) == 0);
+        assertFalse(pair.compareTo(pair3.key()) == 0);
+        assertFalse(pair.compareTo(pair3) == 0);
     }
 
 
