@@ -47,4 +47,26 @@ public class Point {
         return x + ", " + y;
     }
     
+    /**
+     * Returns true if the points are equal
+     * @param p
+     *      the point being compared
+     * @return true if they are equal
+     */
+    public boolean equals(Object p)
+    {
+        if (this == p)
+        {
+            return true;
+        }
+        if (p == null || getClass() != p.getClass())
+        {
+            return false;
+        }
+        Point other = (Point)p;
+
+        return this.getX() == other.getX() && this.getY() == other.getY();
+
+    }
+    
 }

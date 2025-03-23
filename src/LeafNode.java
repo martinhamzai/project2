@@ -1,5 +1,3 @@
-import java.util.Set;
-
 /**
  * The class is a LeafNode which stores points inside a QuadTree. LeafNodes may
  * hold 1-3 points except if the points are the same, which in that case can
@@ -290,11 +288,21 @@ public class LeafNode
     @Override
     public int getCount()
     {
-        return pairs.size();
+        ArrayList<Point> points = new ArrayList<>();
+        for (int i = 0; i < pairs.size(); i++)
+        {
+            if (!points.contains(pairs.get(i).value()))
+            {
+                points.insert(pairs.get(i).value());
+            }
+        }
+        return points.size();
     }
     
     /**
      *adds the points in this leaf to the points array
+     *@param points
+     *      the array of points
      */
     public void addPoints(ArrayList<KVPair<String, Point>> points)
     {

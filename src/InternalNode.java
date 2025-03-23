@@ -382,8 +382,10 @@ public class InternalNode
         se.findDup();
     }
 
+
     /**
      * returns the num of points in all children
+     * 
      * @return the num of points
      */
     @Override
