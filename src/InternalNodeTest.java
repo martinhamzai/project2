@@ -6,17 +6,14 @@ import student.TestCase;
  * @author Martin Hamzai and Richmond Southall
  * @version 2025-03-22
  */
-public class InternalNodeTest
-    extends TestCase
-{
+public class InternalNodeTest extends TestCase {
 
     private InternalNode node;
 
     /**
      * Setup for the test cases
      */
-    public void setUp()
-    {
+    public void setUp() {
         node = new InternalNode();
     }
 
@@ -24,8 +21,7 @@ public class InternalNodeTest
     /**
      * tests the dump method further
      */
-    public void testDumpSingleNode()
-    {
+    public void testDumpSingleNode() {
 
         node.insert(new KVPair<>("p1", new Point(1, 1)), 0, 0, 4, 4);
         node.insert(new KVPair<>("p2", new Point(2, 1)), 0, 0, 4, 4);
@@ -43,8 +39,7 @@ public class InternalNodeTest
     /**
      * tests the search method further
      */
-    public void testSearch()
-    {
+    public void testSearch() {
 
         KVPair<String, Point> p1 = new KVPair<>("p1", new Point(1, 1));
         KVPair<String, Point> p2 = new KVPair<>("p1", new Point(1, 3));
@@ -85,8 +80,7 @@ public class InternalNodeTest
     /**
      * tests the regionsearch method further
      */
-    public void testRegionSearch()
-    {
+    public void testRegionSearch() {
         node.insert(new KVPair<>("p1", new Point(1, 1)), 0, 0, 4, 4);
         node.insert(new KVPair<>("p2", new Point(2, 1)), 0, 0, 4, 4);
         node.insert(new KVPair<>("p3", new Point(1, 2)), 0, 0, 4, 4);
@@ -111,8 +105,7 @@ public class InternalNodeTest
     /**
      * tests the remove method further
      */
-    public void testRemove()
-    {
+    public void testRemove() {
         KVPair<String, Point> p1 = new KVPair<>("p1", new Point(512, 512));
         KVPair<String, Point> p2 = new KVPair<>("p2", new Point(511, 511));
         KVPair<String, Point> p3 = new KVPair<>("p3", new Point(512, 511));
@@ -131,53 +124,45 @@ public class InternalNodeTest
         systemOut().clearHistory();
         node.dump(0, 0, 1024, 1024);
         String str = systemOut().getHistory();
-        assertEquals(
-            str,
-            "Node at 0, 1024, 1024: Internal\r\n"
+        assertEquals(str, "Node at 0, 1024, 1024: Internal\r\n"
             + "  Node at 0, 1024, 512: Empty\r\n"
             + "  Node at 512, 1024, 512: Empty\r\n"
             + "  Node at 0, 1536, 512: Empty\r\n"
-            + "  Node at 512, 1536, 512:\r\n"
-            + "    (p4, 511, 512)\n");
+            + "  Node at 512, 1536, 512:\r\n" + "  (p4, 511, 512)\n");
     }
 
 
     /**
      * test insert()
      */
-    public void testInsert()
-    {
+    public void testInsert() {
         KVPair<String, Point> p1 = new KVPair<>("p1", new Point(512, 512));
         KVPair<String, Point> p2 = new KVPair<>("p1", new Point(600, 674));
         KVPair<String, Point> p3 = new KVPair<>("p1", new Point(842, 540));
         KVPair<String, Point> p4 = new KVPair<>("p1", new Point(1010, 1000));
         node.insert(p1, 0, 0, 1024, 1024);
         node.dump(0, 0, 1024, 1024);
-        assertEquals(
-            systemOut().getHistory(),
+        assertEquals(systemOut().getHistory(),
             "Node at 0, 1024, 1024: Internal\r\n"
                 + "  Node at 0, 1024, 512: Empty\r\n"
                 + "  Node at 512, 1024, 512: Empty\r\n"
                 + "  Node at 0, 1536, 512: Empty\r\n"
-                + "  Node at 512, 1536, 512:\r\n" + "    (p1, 512, 512)\r\n");
+                + "  Node at 512, 1536, 512:\r\n" + "  (p1, 512, 512)\r\n");
         systemOut().clearHistory();
         node.insert(p2, 0, 0, 1024, 1024);
         node.insert(p3, 0, 0, 1024, 1024);
         node.insert(p4, 0, 0, 1024, 1024);
         node.dump(0, 0, 1024, 1024);
-        assertEquals(
-            systemOut().getHistory(),
-            "Node at 0, 1024, 1024: Internal\r\n"
-                + "  Node at 0, 1024, 512: Empty\r\n"
-                + "  Node at 512, 1024, 512: Empty\r\n"
-                + "  Node at 0, 1536, 512: Empty\r\n"
-                + "  Node at 512, 1536, 512: Internal\r\n"
-                + "    Node at 512, 1536, 256:\r\n" + "      (p1, 512, 512)\r\n"
-                + "      (p1, 600, 674)\r\n" + "    Node at 768, 1536, 256:\r\n"
-                + "      (p1, 842, 540)\r\n"
-                + "    Node at 512, 1792, 256: Empty\r\n"
-                + "    Node at 768, 1792, 256:\r\n"
-                + "      (p1, 1010, 1000)\r\n");
+        assertEquals(systemOut().getHistory(),
+            "Node at 0, 1024, 1024: Internal\n"
+                + "  Node at 0, 1024, 512: Empty\n"
+                + "  Node at 512, 1024, 512: Empty\n"
+                + "  Node at 0, 1536, 512: Empty\n"
+                + "  Node at 512, 1536, 512: Internal\n"
+                + "    Node at 512, 1536, 256:\n" + "    (p1, 512, 512)\n"
+                + "    (p1, 600, 674)\n" + "    Node at 768, 1536, 256:\n"
+                + "    (p1, 842, 540)\n" + "    Node at 512, 1792, 256: Empty\n"
+                + "    Node at 768, 1792, 256:\n" + "    (p1, 1010, 1000)\n");
 
     }
 

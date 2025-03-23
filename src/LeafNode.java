@@ -121,7 +121,7 @@ public class LeafNode
             {
                 System.out.print("  ");
             }
-            System.out.println("  " + pairs.get(i).toString());
+            System.out.println(pairs.get(i).toString());
         }
         return 1;
     }
@@ -210,7 +210,7 @@ public class LeafNode
             if (px >= searchX && px < searchX + searchWidth && py >= searchY
                 && py < searchY + searchHeight)
             {
-                System.out.println("point found " + pairs.get(i).toString());
+                System.out.println("Point found: " + pairs.get(i).toString());
             }
         }
 
@@ -284,7 +284,7 @@ public class LeafNode
         }
         for (int k = 0; k < dups.size(); k++)
         {
-            System.out.println(dups.get(k).toString());
+            System.out.println("(" + dups.get(k).toString() + ")");
         }
     }
 

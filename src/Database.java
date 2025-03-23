@@ -153,7 +153,7 @@ public class Database
      */
     public void duplicates()
     {
-        System.out.println("Duplicate points");
+        System.out.println("Duplicate points:");
         qt.findDup();
     }
 

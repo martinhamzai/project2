@@ -6,9 +6,7 @@ import student.TestCase;
  * @author Martin Hamzai and Richmond Southall
  * @version 2025-03-22
  */
-public class LeafNodeTest
-    extends TestCase
-{
+public class LeafNodeTest extends TestCase {
 
     private LeafNode ln;
     private Point p1;
@@ -19,8 +17,7 @@ public class LeafNodeTest
     /**
      * Setup for each test case.
      */
-    public void setUp()
-    {
+    public void setUp() {
         p1 = new Point(10, 10);
         p2 = new Point(20, 20);
         pair1 = new KVPair<>("p1", p1);
@@ -32,8 +29,7 @@ public class LeafNodeTest
     /**
      * Tests that a new node stores the initial pair correctly
      */
-    public void testInsert()
-    {
+    public void testInsert() {
         KVPair<String, Point> p3 = new KVPair<>("p12", new Point(10, 10));
         QuadNode result = ln.insert(p3, 0, 0, 1024, 1024);
 
@@ -46,15 +42,14 @@ public class LeafNodeTest
     /**
      * Test insert that changes the leafnode into internalnode.
      */
-    public void testInsertToInternal()
-    {
+    public void testInsertToInternal() {
         ln = new LeafNode(new KVPair<>("a", new Point(1, 1)));
         ln = (LeafNode)ln.insert(pair1, 0, 0, 1024, 1024);
         ln = (LeafNode)ln.insert(pair2, 0, 0, 1024, 1024);
 
         // this should change to internalnode
-        QuadNode changed =
-            ln.insert(new KVPair<>("d", new Point(4, 4)), 0, 0, 1024, 1024);
+        QuadNode changed = ln.insert(new KVPair<>("d", new Point(4, 4)), 0, 0,
+            1024, 1024);
         assertTrue(changed instanceof InternalNode);
     }
 
@@ -62,31 +57,26 @@ public class LeafNodeTest
     /**
      * Test dumping the node prints the right info.
      */
-    public void testDump()
-    {
+    public void testDump() {
         ln.insert(pair2, 0, 0, 1024, 1024);
         int count = ln.dump(0, 0, 0, 1024);
         assertEquals(1, count);
-        assertEquals(
-            systemOut().getHistory(),
-            "Node at 0, 0, 1024:\n" + "  " + pair1.toString() + "\n" + "  "
-                + pair2.toString() + "\n");
+        assertEquals(systemOut().getHistory(), "Node at 0, 0, 1024:\n" + pair1
+            .toString() + "\n" + pair2.toString() + "\n");
     }
 
 
     /**
      * Test region search.
      */
-    public void testRegionSearch()
-    {
+    public void testRegionSearch() {
         ln.insert(pair2, 0, 0, 1024, 1024);
 
         // region includes p1
         int count1 = ln.regionSearch(0, 0, 11, 11, 0, 0, 1024);
         assertEquals(1, count1);
-        assertEquals(
-            systemOut().getHistory(),
-            "point found " + pair1.toString() + "\n");
+        assertEquals(systemOut().getHistory(), "Point found: " + pair1
+            .toString() + "\n");
 
         systemOut().clearHistory();
 
@@ -99,8 +89,7 @@ public class LeafNodeTest
     /**
      * Test search method
      */
-    public void testSearch()
-    {
+    public void testSearch() {
         ln.insert(pair2, 0, 0, 1024, 1024);
         KVPair<String, Point> result = ln.search(p1, 0, 0, 1024, 1024);
         assertEquals(pair1, result);
@@ -111,8 +100,7 @@ public class LeafNodeTest
     /**
      * Test remove method.
      */
-    public void testRemove()
-    {
+    public void testRemove() {
         QuadNode removed = ln.remove(p1, 0, 0, 1024, 1024);
         assertTrue(removed instanceof EmptyNode);
         assertEquals(systemOut().getHistory(), "Point removed: (p1, 10, 10)\n");
